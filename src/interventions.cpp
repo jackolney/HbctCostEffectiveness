@@ -123,10 +123,10 @@ void Interventions::Execute()
 					new SeedHct(pPerson,14610 + (i * 2922),false);
 
 		// Every 9 years
-		if(*p_Hbct == 9) 
-			for(size_t i=0;i<3;i++)
-				if(GetTime() <= 14610 + (i * 3287.25))
-					new SeedHct(pPerson,14610 + (i * 3287.25),false);
+		// if(*p_Hbct == 9) 
+		// 	for(size_t i=0;i<3;i++)
+		// 		if(GetTime() <= 14610 + (i * 3287.25))
+		// 			new SeedHct(pPerson,14610 + (i * 3287.25),false);
 
 		// Every 10 years
 		if(*p_Hbct == 10) 
