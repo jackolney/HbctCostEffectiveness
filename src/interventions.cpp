@@ -134,15 +134,8 @@ void Interventions::Execute()
 				if(GetTime() <= 14610 + (i * 3652.5))
 					new SeedHct(pPerson,14610 + (i * 3652.5),false);
 
-
-		// for(size_t i=0;i<5;i++)
-		// 	if(GetTime() <= 14610 + (i * 1461))
-		// 		new SeedHct(pPerson,14610 + (i * 1461),false);
-		
-		// if(*p_Hbct == 1) {
-		// 	hctProbLink = 1;
-		// 	hctProbLinkPreviouslyDiagnosed = 1;
-		// }
+		hctProbLink = 1;
+		hctProbLinkPreviouslyDiagnosed = 1;
 	}
 	
 	/////////////////////
