@@ -78,61 +78,55 @@ void Interventions::Execute()
 		if(*p_Hbct == 1) 
 			for(size_t i=0;i<20;i++)
 				if(GetTime() <= 14610 + (i * 365.25))
-					new SeedHct(pPerson,14610 + (i * 365.25),false);
+					new SeedPerpetualHct(pPerson,14610 + (i * 365.25));
 
 		// Every 2 years
 		if(*p_Hbct == 2) 
 			for(size_t i=0;i<10;i++)
 				if(GetTime() <= 14610 + (i * 730.5))
-					new SeedHct(pPerson,14610 + (i * 730.5),false);
+					new SeedPerpetualHct(pPerson,14610 + (i * 730.5));
 
 		// Every 3 years
 		if(*p_Hbct == 3) 
 			for(size_t i=0;i<7;i++)
 				if(GetTime() <= 14610 + (i * 1095.75))
-					new SeedHct(pPerson,14610 + (i * 1095.75),false);
+					new SeedPerpetualHct(pPerson,14610 + (i * 1095.75));
 
 		// Every 4 years
 		if(*p_Hbct == 4) 
 			for(size_t i=0;i<5;i++)
 				if(GetTime() <= 14610 + (i * 1461))
-					new SeedHct(pPerson,14610 + (i * 1461),false);
+					new SeedPerpetualHct(pPerson,14610 + (i * 1461));
 
 		// Every 5 years
 		if(*p_Hbct == 5) 
 			for(size_t i=0;i<4;i++)
 				if(GetTime() <= 14610 + (i * 1826.25))
-					new SeedHct(pPerson,14610 + (i * 1826.25),false);
+					new SeedPerpetualHct(pPerson,14610 + (i * 1826.25));
 
 		// Every 6 years
 		if(*p_Hbct == 6) 
 			for(size_t i=0;i<4;i++)
 				if(GetTime() <= 14610 + (i * 2191.5))
-					new SeedHct(pPerson,14610 + (i * 2191.5),false);
+					new SeedPerpetualHct(pPerson,14610 + (i * 2191.5));
 
 		// Every 7 years
 		if(*p_Hbct == 7) 
 			for(size_t i=0;i<3;i++)
 				if(GetTime() <= 14610 + (i * 2556.75))
-					new SeedHct(pPerson,14610 + (i * 2556.75),false);
+					new SeedPerpetualHct(pPerson,14610 + (i * 2556.75));
 
 		// Every 8 years
 		if(*p_Hbct == 8) 
 			for(size_t i=0;i<3;i++)
 				if(GetTime() <= 14610 + (i * 2922))
-					new SeedHct(pPerson,14610 + (i * 2922),false);
-
-		// Every 9 years
-		// if(*p_Hbct == 9) 
-		// 	for(size_t i=0;i<3;i++)
-		// 		if(GetTime() <= 14610 + (i * 3287.25))
-		// 			new SeedHct(pPerson,14610 + (i * 3287.25),false);
+					new SeedPerpetualHct(pPerson,14610 + (i * 2922));
 
 		// Every 10 years
 		if(*p_Hbct == 10) 
 			for(size_t i=0;i<2;i++)
 				if(GetTime() <= 14610 + (i * 3652.5))
-					new SeedHct(pPerson,14610 + (i * 3652.5),false);
+					new SeedPerpetualHct(pPerson,14610 + (i * 3652.5));
 
 		hctProbLink = 1;
 		hctProbLinkPreviouslyDiagnosed = 1;
