@@ -30,7 +30,7 @@ void ChargeHctVisit(person * const thePerson)
 /////////////////////
 /////////////////////
 
-void ChargeHctHivTets(person * const thePerson)
+void ChargeHctHivTest(person * const thePerson)
 {
 	thePerson->SetRapidHivTestCost(rapidHivTestCost);	
 }
