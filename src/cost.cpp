@@ -25,7 +25,14 @@ extern double * theArtCOST_Hiv;
 void ChargeHctVisit(person * const thePerson)
 {
 	thePerson->SetHctVisitCost(hctVisitCost);
-	thePerson->SetRapidHivTestCost(rapidHivTestCost);
+}
+
+/////////////////////
+/////////////////////
+
+void ChargeHctHivTets(person * const thePerson)
+{
+	thePerson->SetRapidHivTestCost(rapidHivTestCost);	
 }
 
 /////////////////////

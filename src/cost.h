@@ -18,6 +18,8 @@
 
 void ChargeHctVisit(person * const thePerson);
 
+void ChargeHctHivTest(person * const thePerson);
+
 void ChargeVctPictHivTest(person * const thePerson);
 
 void ChargePreArtClinicVisit(person * const thePerson);
