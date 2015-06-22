@@ -129,7 +129,7 @@ void SchedulePreArtTestDropout(person * const thePerson, const double theTime)
 
 bool ReceiveCd4TestResult(person * const thePerson, const double theTime)
 {
-	if(hctRetentionTrigger == false) {
+	if(thePerson->GetHctRetentionTrigger() == false) {
 		if(thePerson->GetCd4TestCount() <= 1) {
 		 	switch(thePerson->GetDiagnosisRoute()) {
 				case 1: return theRng->Sample(hctShortTermRetention);  break;
@@ -146,7 +146,7 @@ bool ReceiveCd4TestResult(person * const thePerson, const double theTime)
 		 	}
 		}
 	} else {
-		// hctRetentionTrigger == true;                                                          
+		// thePerson->GetHctRetentionTrigger() == true;                                                          
 		if(thePerson->GetCd4TestCount() <= 1) {
 		 	switch(thePerson->GetDiagnosisRoute()) {
 				case 1: return theRng->Sample(0.9743416);  break;
@@ -170,7 +170,7 @@ bool ReceiveCd4TestResult(person * const thePerson, const double theTime)
 
 bool AttendCd4TestResult(person * const thePerson, const double theTime)
 {
-	if(hctRetentionTrigger == false) {
+	if(thePerson->GetHctRetentionTrigger() == false) {
 		if(theRng->Sample(cd4ResultProbAttend) && !thePerson->GetEverArt())
 			return thePerson->Alive();
 		else {
@@ -192,7 +192,7 @@ bool AttendCd4TestResult(person * const thePerson, const double theTime)
 
 bool SecondaryCd4Test(person * const thePerson, const double theTime)
 {
-	if(hctRetentionTrigger == false) {
+	if(thePerson->GetHctRetentionTrigger() == false) {
 		switch(thePerson->GetDiagnosisRoute()) {
 			case 1: return theRng->Sample(hctProbSecondaryCd4Test); break;
 			case 2: return theRng->Sample(vctProbSecondaryCd4Test); break;
@@ -232,6 +232,8 @@ void ScheduleArtInitiation(person * const thePerson, const double theTime)
 
 void ScheduleArtDropout(person * const thePerson, const double theTime)
 {
+	// if(thePerson->GetHctRetentionTrigger() == false) {
+	// Need an ART Start Date.
 	const double artDropoutDate = theRng->SampleExpDist(artDropoutTimeOneYear);
 	
 	if(artDropoutDate < 365.25)

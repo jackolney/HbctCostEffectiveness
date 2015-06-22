@@ -131,7 +131,15 @@ void HctHivTest::Execute()
 			// SecondaryCd4Test();
 
 		// ART
-		pPerson->SetArtAdherenceState(0.975);
+		if(pPerson->GetArtInitiationState()) {
+			pPerson->SetArtAdherenceState(0.975);
+			// If ArtDropoutDate set, cancel it.
+			if(pPerson->GetPreArtDropoutDate() > 0) {
+				pPerson->SetPreArtDropoutDate(0);
+				ScheduleArtDropout(pPerson,GetTime());
+			}
+		}
+		
 		// If ArtDropoutDate set, then cancel it.
 		// ScheduleArtDropout (now uses hctRetentionTrigger to reduce times... by a bit. %?)
 
