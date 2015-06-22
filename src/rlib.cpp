@@ -961,7 +961,7 @@ SEXP CallCascade(SEXP s_pop,
 	SET_VECTOR_ELT(sOUTNAMES,137,mkChar("sDALY_LYL"));
 	namesgets(sOUT,sOUTNAMES);
 
-	UNPROTECT(147);
+	UNPROTECT(146);
 	return(sOUT);
 	}
 
