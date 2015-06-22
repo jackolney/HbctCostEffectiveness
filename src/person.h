@@ -65,6 +65,10 @@ public:
 	void SetHctHivTestDate(double theDate) { hctHivTestDate = theDate; }
 	void SetVctHivTestDate(double theDate) { vctHivTestDate = theDate; }
 	void SetPictHivTestDate(double theDate) { pictHivTestDate = theDate; }
+
+	/* Pre/ART Dropout Dates */
+	void SetPreArtDropoutDate(double theDate) { preArtDropoutDate = theDate; }
+	void SetArtDropoutDate(double theDate) { artDropoutDate = theDate; }
 	
 	/* Update Tx Guidelines */
 	void UpdateTxGuidelines(unsigned int theCd4, unsigned int theWho) { cd4Tx = theCd4; whoTx = theWho; }
@@ -137,6 +141,10 @@ public:
 	double GetCd4RecoverDate() const { return cd4RecoverDate; }
 	double GetWhoDeclineDate() const { return whoDeclineDate; }
 	double GetWhoRecoverDate() const { return whoRecoverDate; }
+
+	/* Pre/ART Dropout Dates */
+	void GetPreArtDropoutDate() const { return preArtDropoutDate; }
+	void GetArtDropoutDate() const { return artDropoutDate; }
 	
 	/* Hiv Care Date Getting Functions */
 	double GetHctHivTestDate() const { return hctHivTestDate; }
@@ -233,6 +241,8 @@ private:
 	double hctHivTestDate;
 	double vctHivTestDate;
 	double pictHivTestDate;
+	double preArtDropoutDate;
+	double artDropoutDate;
 	
 	/* Hiv care flags */
 	bool diagnosed;

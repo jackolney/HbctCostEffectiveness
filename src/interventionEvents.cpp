@@ -112,9 +112,16 @@ void HctHivTest::Execute()
 
 		// InCare
 		hctRetentionTrigger = true;
+		// If PreArtDropoutDate set, then cancel it.
+		// Schedule PICT / VCT visit?
+		// Allow hctRetentionTrigger to reduce the probability of loss by 50% across PreART care.
+
 
 		// ART
 		pPerson->SetArtAdherenceState(0.975);
+		// If ArtDropoutDate set, then cancel it.
+		// ScheduleArtDropout (now uses hctRetentionTrigger to reduce times... by a bit. %?)
+
 
 	}
 }
