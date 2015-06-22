@@ -111,72 +111,67 @@ void Interventions::Execute()
 		hctProbLinkPreviouslyDiagnosed = 1;
 	}
 
-
 	/////////////////////
-	/////////////////////
-	/////////////////////
-	/////////////////////
-	/////////////////////
-	/* NaiveHbct */
+	/* HbctFrequency */
 	
-	// if(*p_Hbct) {
-	// 	// Every year
-	// 	if(*p_Hbct == 1) 
-	// 		for(size_t i=0;i<20;i++)
-	// 			if(GetTime() <= 14610 + (i * 365.25))
-	// 				new SeedHct(pPerson,14610 + (i * 365.25),false);
+	if(*p_HbctFrequency) {
+		// Every year
+		if(*p_HbctFrequency == 1) 
+			for(size_t i=0;i<20;i++)
+				if(GetTime() <= 14610 + (i * 365.25))
+					new SeedHct(pPerson,14610 + (i * 365.25),false);
 
-	// 	// Every 2 years
-	// 	if(*p_Hbct == 2) 
-	// 		for(size_t i=0;i<10;i++)
-	// 			if(GetTime() <= 14610 + (i * 730.5))
-	// 				new SeedHct(pPerson,14610 + (i * 730.5),false);
+		// Every 2 years
+		if(*p_HbctFrequency == 2) 
+			for(size_t i=0;i<10;i++)
+				if(GetTime() <= 14610 + (i * 730.5))
+					new SeedHct(pPerson,14610 + (i * 730.5),false);
 
-	// 	// Every 3 years
-	// 	if(*p_Hbct == 3) 
-	// 		for(size_t i=0;i<7;i++)
-	// 			if(GetTime() <= 14610 + (i * 1095.75))
-	// 				new SeedHct(pPerson,14610 + (i * 1095.75),false);
+		// Every 3 years
+		if(*p_HbctFrequency == 3) 
+			for(size_t i=0;i<7;i++)
+				if(GetTime() <= 14610 + (i * 1095.75))
+					new SeedHct(pPerson,14610 + (i * 1095.75),false);
 
-	// 	// Every 4 years
-	// 	if(*p_Hbct == 4) 
-	// 		for(size_t i=0;i<5;i++)
-	// 			if(GetTime() <= 14610 + (i * 1461))
-	// 				new SeedHct(pPerson,14610 + (i * 1461),false);
+		// Every 4 years
+		if(*p_HbctFrequency == 4) 
+			for(size_t i=0;i<5;i++)
+				if(GetTime() <= 14610 + (i * 1461))
+					new SeedHct(pPerson,14610 + (i * 1461),false);
 
-	// 	// Every 5 years
-	// 	if(*p_Hbct == 5) 
-	// 		for(size_t i=0;i<4;i++)
-	// 			if(GetTime() <= 14610 + (i * 1826.25))
-	// 				new SeedHct(pPerson,14610 + (i * 1826.25),false);
+		// Every 5 years
+		if(*p_HbctFrequency == 5) 
+			for(size_t i=0;i<4;i++)
+				if(GetTime() <= 14610 + (i * 1826.25))
+					new SeedHct(pPerson,14610 + (i * 1826.25),false);
 
-	// 	// Every 6 years
-	// 	if(*p_Hbct == 6) 
-	// 		for(size_t i=0;i<4;i++)
-	// 			if(GetTime() <= 14610 + (i * 2191.5))
-	// 				new SeedHct(pPerson,14610 + (i * 2191.5),false);
+		// Every 6 years
+		if(*p_HbctFrequency == 6) 
+			for(size_t i=0;i<4;i++)
+				if(GetTime() <= 14610 + (i * 2191.5))
+					new SeedHct(pPerson,14610 + (i * 2191.5),false);
 
-	// 	// Every 7 years
-	// 	if(*p_Hbct == 7) 
-	// 		for(size_t i=0;i<3;i++)
-	// 			if(GetTime() <= 14610 + (i * 2556.75))
-	// 				new SeedHct(pPerson,14610 + (i * 2556.75),false);
+		// Every 7 years
+		if(*p_HbctFrequency == 7) 
+			for(size_t i=0;i<3;i++)
+				if(GetTime() <= 14610 + (i * 2556.75))
+					new SeedHct(pPerson,14610 + (i * 2556.75),false);
 
-	// 	// Every 8 years
-	// 	if(*p_Hbct == 8) 
-	// 		for(size_t i=0;i<3;i++)
-	// 			if(GetTime() <= 14610 + (i * 2922))
-	// 				new SeedHct(pPerson,14610 + (i * 2922),false);
+		// Every 8 years
+		if(*p_HbctFrequency == 8) 
+			for(size_t i=0;i<3;i++)
+				if(GetTime() <= 14610 + (i * 2922))
+					new SeedHct(pPerson,14610 + (i * 2922),false);
 
-	// 	// Every 10 years
-	// 	if(*p_Hbct == 10) 
-	// 		for(size_t i=0;i<2;i++)
-	// 			if(GetTime() <= 14610 + (i * 3652.5))
-	// 				new SeedHct(pPerson,14610 + (i * 3652.5),false);
+		// Every 10 years
+		if(*p_HbctFrequency == 10) 
+			for(size_t i=0;i<2;i++)
+				if(GetTime() <= 14610 + (i * 3652.5))
+					new SeedHct(pPerson,14610 + (i * 3652.5),false);
 
-	// 	hctProbLink = 1;
-	// 	hctProbLinkPreviouslyDiagnosed = 1;
-	// }
+		hctProbLink = 1;
+		hctProbLinkPreviouslyDiagnosed = 1;
+	}
 	
 	/////////////////////
 	/* Calibration */
