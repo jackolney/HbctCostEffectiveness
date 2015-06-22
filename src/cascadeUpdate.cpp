@@ -232,15 +232,27 @@ void ScheduleArtInitiation(person * const thePerson, const double theTime)
 
 void ScheduleArtDropout(person * const thePerson, const double theTime)
 {
-	// if(thePerson->GetHctRetentionTrigger() == false) {
-	// Need an ART Start Date.
-	const double artDropoutDate = theRng->SampleExpDist(artDropoutTimeOneYear);
-	
-	if(artDropoutDate < 365.25)
-		new ArtDropout(thePerson,theTime + artDropoutDate);
-	else
-		new ArtDropout(thePerson,theTime + 365.25 + theRng->SampleExpDist(artDropoutTimeTwoYear));
-	
+	const double TimeSinceArtInitiation = theTime - thePerson->GetArtDay();
+
+	if(thePerson->GetHctRetentionTrigger() == false) {
+		if(TimeSinceArtInitiation < 365.25) {
+			const double artDropoutDate = theRng->SampleExpDist(artDropoutTimeOneYear);
+			if(artDropoutDate < 365.25 - TimeSinceArtInitiation)
+				new ArtDropout(thePerson,theTime + artDropoutDate);	
+			else
+				new ArtDropout(thePerson,theTime + (365.25 - TimeSinceArtInitiation) + theRng->SampleExpDist(artDropoutTimeTwoYear));
+		} else
+			new ArtDropout(thePerson,theTime + theRng->SampleExpDist(artDropoutTimeTwoYear));
+	} else {
+		if(TimeSinceArtInitiation < 365.25) {
+			const double artDropoutDate = theRng->SampleExpDist(artDropoutTimeOneYear * 1.25);
+			if(artDropoutDate < 365.25 - TimeSinceArtInitiation)
+				new ArtDropout(thePerson,theTime + artDropoutDate);	
+			else
+				new ArtDropout(thePerson,theTime + (365.25 - TimeSinceArtInitiation) + theRng->SampleExpDist(artDropoutTimeTwoYear * 1.25));
+		} else
+			new ArtDropout(thePerson,theTime + theRng->SampleExpDist(artDropoutTimeTwoYear * 1.25));
+	}
 }
 
 ////////////////////
