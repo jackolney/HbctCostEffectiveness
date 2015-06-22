@@ -110,6 +110,7 @@ void HctHivTest::Execute()
 			ScheduleInitialCd4TestAfterHct(pPerson,GetTime());
 		SchedulePictHivTest(pPerson,GetTime());
 
+		// Update HctRetentionTrigger.
 		pPerson->SetHctRetentionTrigger(true);
 		
 		// InCare	

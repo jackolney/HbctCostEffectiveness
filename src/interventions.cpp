@@ -87,7 +87,7 @@ void Interventions::Execute()
 					new SeedHct(pPerson,14610 + (i * 1461),false);
 
 		pPerson->SetHctNcdCostTrigger(true);
-		
+
 		hctProbLink = 1;
 		hctProbLinkPreviouslyDiagnosed = 1;
 	}
@@ -112,7 +112,8 @@ void Interventions::Execute()
 					// reset retention? Almost need retention rates to be calculated off of something else?
 				// - ART Adherence
 
-		hctNcdCostTrigger = true;
+		pPerson->SetHctNcdCostTrigger(true);
+		
 		hctProbLink = 1;
 		hctProbLinkPreviouslyDiagnosed = 1;
 	}

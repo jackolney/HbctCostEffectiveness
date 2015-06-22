@@ -109,10 +109,6 @@ extern double annualArtCost;
 extern double annualAdherenceCost;
 extern double outreachCost;
 
-/* HBCT Trigger */
-extern bool hctNcdCostTrigger;
-extern bool hctRetentionTrigger;
-
 //How to use:
 /* HBCT */
 //HCT visit + HIV-test = 8 + 10 = $18
