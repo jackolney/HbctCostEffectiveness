@@ -103,17 +103,10 @@ void Interventions::Execute()
 				if(GetTime() <= 14610 + (i * 1461))
 					new SeedHct(pPerson,14610 + (i * 1461),false);
 
-		// Trigger for retention behaviour ... how?
-
-		// Things to impact:
-				// - Pre-ART retention
-					// Alter retention rate calculation... include a factor on ALL people... make it 1 in these people?
-				// - ART retention
-					// reset retention? Almost need retention rates to be calculated off of something else?
-				// - ART Adherence
+		// All control and changes to the system are driven by the HCT event.
 
 		pPerson->SetHctNcdCostTrigger(true);
-		
+
 		hctProbLink = 1;
 		hctProbLinkPreviouslyDiagnosed = 1;
 	}
