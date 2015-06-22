@@ -101,9 +101,9 @@ void HctHivTest::Execute()
 {
 	UpdateDaly(pPerson,GetTime());
 	ChargeHctVisit(pPerson);
+	if(!pPerson->GetDiagnosedState())
+		ChargeHctHivTest(pPerson);
 	if(pPerson->GetSeroStatus()) {
-		if(!pPerson->GetDiagnosedState())
-			ChargeHctHivTest(pPerson);
 		pPerson->SetDiagnosedState(true,1,GetTime());			
 		if(pointOfCare)
 			new HctPocCd4Test(pPerson,GetTime());
