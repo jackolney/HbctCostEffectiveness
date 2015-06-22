@@ -99,18 +99,10 @@ extern unsigned int * Pie_2;
 extern unsigned int * Pie_3;
 
 /* Intervention Pointers */
-int const * p_Hbct;
-int const * p_Vct;
-int const * p_HbctPocCd4;
-int const * p_Linkage;
-int const * p_PreOutreach;
-int const * p_ImprovedCare;
-int const * p_PocCd4;
-int const * p_VctPocCd4;
-int const * p_ArtOutreach;
-int const * p_Adherence;
-int const * p_ImmediateArt;
-int const * p_UniversalTestAndTreat;
+int const * p_NaiveHbct;
+int const * p_HbctNcd;
+int const * p_HbctNcdRetention;
+int const * p_HbctFrequency;
 int const * p_Calibration;
 
 /* Guidelines Pointers */
@@ -191,48 +183,24 @@ extern "C" {
 /////////////////////
 
 SEXP CallCascade(SEXP s_pop,
-				 SEXP s_Hbct,
-				 SEXP s_Vct,
-				 SEXP s_HbctPocCd4,
-				 SEXP s_Linkage,
-				 SEXP s_VctPocCd4,
-				 SEXP s_PreOutreach,
-				 SEXP s_ImprovedCare,
-				 SEXP s_PocCd4,
-				 SEXP s_ArtOutreach,
-				 SEXP s_Adherence,
-				 SEXP s_ImmediateArt,
-				 SEXP s_UniversalTestAndTreat,
+				 SEXP s_NaiveHbct,
+				 SEXP s_HbctNcd,
+				 SEXP s_HbctNcdRetention,
+				 SEXP s_HbctFrequency,
 				 SEXP s_Calibration) {
 
 	PROTECT(s_pop = coerceVector(s_pop, REALSXP));
-	PROTECT(s_Hbct = coerceVector(s_Hbct, INTSXP));
-	PROTECT(s_Vct = coerceVector(s_Vct, INTSXP));
-	PROTECT(s_HbctPocCd4 = coerceVector(s_HbctPocCd4, INTSXP));
-	PROTECT(s_Linkage = coerceVector(s_Linkage, INTSXP));
-	PROTECT(s_VctPocCd4 = coerceVector(s_VctPocCd4, INTSXP));
-	PROTECT(s_PreOutreach = coerceVector(s_PreOutreach, INTSXP));
-	PROTECT(s_ImprovedCare = coerceVector(s_ImprovedCare, INTSXP));
-	PROTECT(s_PocCd4 = coerceVector(s_PocCd4, INTSXP));
-	PROTECT(s_ArtOutreach = coerceVector(s_ArtOutreach, INTSXP));
-	PROTECT(s_Adherence = coerceVector(s_Adherence, INTSXP));
-	PROTECT(s_ImmediateArt = coerceVector(s_ImmediateArt, INTSXP));
-	PROTECT(s_UniversalTestAndTreat = coerceVector(s_UniversalTestAndTreat, INTSXP));
+	PROTECT(s_NaiveHbct = coerceVector(s_NaiveHbct, INTSXP));
+	PROTECT(s_HbctNcd = coerceVector(s_HbctNcd, INTSXP));
+	PROTECT(s_HbctNcdRetention = coerceVector(s_HbctNcdRetention, INTSXP));
+	PROTECT(s_HbctFrequency = coerceVector(s_HbctFrequency, INTSXP));
 	PROTECT(s_Calibration = coerceVector(s_Calibration, INTSXP));
 
 	/* Assigning Pointers */
-	p_Hbct = INTEGER(s_Hbct);
-	p_Vct = INTEGER(s_Vct);
-	p_HbctPocCd4 = INTEGER(s_HbctPocCd4);
-	p_Linkage = INTEGER(s_Linkage);
-	p_VctPocCd4 = INTEGER(s_VctPocCd4);
-	p_PreOutreach = INTEGER(s_PreOutreach);
-	p_ImprovedCare = INTEGER(s_ImprovedCare);
-	p_PocCd4 = INTEGER(s_PocCd4);
-	p_ArtOutreach = INTEGER(s_ArtOutreach);
-	p_Adherence = INTEGER(s_Adherence);
-	p_ImmediateArt = INTEGER(s_ImmediateArt);
-	p_UniversalTestAndTreat = INTEGER(s_UniversalTestAndTreat);
+	p_NaiveHbct = INTEGER(s_NaiveHbct);
+	p_HbctNcd = INTEGER(s_HbctNcd);
+	p_HbctNcdRetention = INTEGER(s_HbctNcdRetention);
+	p_HbctFrequency = INTEGER(s_HbctFrequency);
 	p_Calibration = INTEGER(s_Calibration);
 
 	/* THE MODEL */
@@ -993,7 +961,7 @@ SEXP CallCascade(SEXP s_pop,
 	SET_VECTOR_ELT(sOUTNAMES,137,mkChar("sDALY_LYL"));
 	namesgets(sOUT,sOUTNAMES);
 
-	UNPROTECT(154);
+	UNPROTECT(147);
 	return(sOUT);
 	}
 

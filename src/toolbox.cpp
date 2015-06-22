@@ -114,6 +114,10 @@ double annualArtCost = 367.00;
 double annualAdherenceCost = 33.54;
 double outreachCost = 19.55;
 
+/* HBCT Trigger */
+bool hctNcdCostTrigger = false;
+bool hctRetentionTrigger = false;
+
 //How to use:
 /* HBCT */
 //HCT visit + HIV-test = 8 + 10 = $18

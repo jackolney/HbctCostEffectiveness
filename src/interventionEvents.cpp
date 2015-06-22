@@ -102,12 +102,20 @@ void HctHivTest::Execute()
 	UpdateDaly(pPerson,GetTime());
 	ChargeHctVisit(pPerson);
 	if(pPerson->GetSeroStatus()) {
+		// Testing
 		pPerson->SetDiagnosedState(true,1,GetTime());
 		if(pointOfCare)
 			new HctPocCd4Test(pPerson,GetTime());
 		else if(HctLinkage(pPerson,GetTime()))
 			ScheduleInitialCd4TestAfterHct(pPerson,GetTime());
 		SchedulePictHivTest(pPerson,GetTime());
+
+		// InCare
+		hctRetentionTrigger = true;
+
+		// ART
+		pPerson->SetArtAdherenceState(0.975);
+
 	}
 }
 

@@ -24,8 +24,13 @@ extern double * theArtCOST_Hiv;
 
 void ChargeHctVisit(person * const thePerson)
 {
-	thePerson->SetHctVisitCost(hctVisitCost);
-	thePerson->SetRapidHivTestCost(rapidHivTestCost);
+	if(hctNcdCostTrigger) {
+		thePerson->SetHctVisitCost(hctVisitCost * 0.5);
+		thePerson->SetRapidHivTestCost(rapidHivTestCost * 0.5);
+	} else {
+		thePerson->SetHctVisitCost(hctVisitCost);
+		thePerson->SetRapidHivTestCost(rapidHivTestCost);
+	}
 }
 
 /////////////////////
