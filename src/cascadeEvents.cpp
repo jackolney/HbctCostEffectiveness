@@ -316,6 +316,8 @@ bool ArtDropout::CheckValid()
 {
 	if(pPerson->GetArtDropoutDate() == GetTime())
 		return pPerson->Alive();
+	else
+		return false;
 }
 
 void ArtDropout::Execute()

@@ -145,10 +145,10 @@ public:
 	double GetWhoRecoverDate() const { return whoRecoverDate; }
 
 	/* HBCT Stuff */
-	void GetHctNcdCostTrigger() const { return hctNcdCostTrigger; }
-	void GetHctRetentionTrigger() const { return hctRetentionTrigger; }
-	void GetPreArtDropoutDate() const { return preArtDropoutDate; }
-	void GetArtDropoutDate() const { return artDropoutDate; }
+	bool GetHctNcdCostTrigger() const { return hctNcdCostTrigger; }
+	bool GetHctRetentionTrigger() const { return hctRetentionTrigger; }
+	double GetPreArtDropoutDate() const { return preArtDropoutDate; }
+	double GetArtDropoutDate() const { return artDropoutDate; }
 	
 	/* Hiv Care Date Getting Functions */
 	double GetHctHivTestDate() const { return hctHivTestDate; }
