@@ -110,12 +110,24 @@ void HctHivTest::Execute()
 			ScheduleInitialCd4TestAfterHct(pPerson,GetTime());
 		SchedulePictHivTest(pPerson,GetTime());
 
-		// InCare
-		hctRetentionTrigger = true;
-		// If PreArtDropoutDate set, then cancel it.
-		// Schedule PICT / VCT visit?
+		pPerson->SetHctRetentionTrigger(true);
+		
+		// InCare	
+		if(pPerson->GetInCareState()) {
+			// If scheduled to dropout of PreArt care, cancel it.
+			if(pPerson->GetPreArtDropoutDate() > 0) {
+				pPerson->SetPreArtDropoutDate(0);
+				ScheduleVctHivTest(pPerson,GetTime());
+				SchedulePictHivTest(pPerson,GetTime());
+			}
+		}
+		
+		
 		// Allow hctRetentionTrigger to reduce the probability of loss by 50% across PreART care.
-
+		// If function specific. Functions that it will act upon:
+			// ReceiveCd4TestResult();
+			// AttendCd4TestResult();
+			// SecondaryCd4Test();
 
 		// ART
 		pPerson->SetArtAdherenceState(0.975);

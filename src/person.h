@@ -66,7 +66,9 @@ public:
 	void SetVctHivTestDate(double theDate) { vctHivTestDate = theDate; }
 	void SetPictHivTestDate(double theDate) { pictHivTestDate = theDate; }
 
-	/* Pre/ART Dropout Dates */
+	/* HBCT Stuff */
+	void SetHctNcdCostTrigger(bool theValue)  { hctNcdCostTrigger = theValue; }
+	void SetHctRetentionTrigger(bool theValue) { hctRetentionTrigger = theValue; }
 	void SetPreArtDropoutDate(double theDate) { preArtDropoutDate = theDate; }
 	void SetArtDropoutDate(double theDate) { artDropoutDate = theDate; }
 	
@@ -142,7 +144,9 @@ public:
 	double GetWhoDeclineDate() const { return whoDeclineDate; }
 	double GetWhoRecoverDate() const { return whoRecoverDate; }
 
-	/* Pre/ART Dropout Dates */
+	/* HBCT Stuff */
+	void GetHctNcdCostTrigger() const { return hctNcdCostTrigger; }
+	void GetHctRetentionTrigger() const { return hctRetentionTrigger; }
 	void GetPreArtDropoutDate() const { return preArtDropoutDate; }
 	void GetArtDropoutDate() const { return artDropoutDate; }
 	
@@ -241,6 +245,10 @@ private:
 	double hctHivTestDate;
 	double vctHivTestDate;
 	double pictHivTestDate;
+
+	/* HBCT STUFF */
+	bool hctNcdCostTrigger;
+	bool hctRetentionTrigger;
 	double preArtDropoutDate;
 	double artDropoutDate;
 	

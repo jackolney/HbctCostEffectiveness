@@ -86,7 +86,8 @@ void Interventions::Execute()
 				if(GetTime() <= 14610 + (i * 1461))
 					new SeedHct(pPerson,14610 + (i * 1461),false);
 
-		hctNcdCostTrigger = true;
+		pPerson->SetHctNcdCostTrigger(true);
+		
 		hctProbLink = 1;
 		hctProbLinkPreviouslyDiagnosed = 1;
 	}
