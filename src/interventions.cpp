@@ -87,7 +87,6 @@ void Interventions::Execute()
 					new SeedHct(pPerson,14610 + (i * 1461),false);
 
 		pPerson->SetHctNcdCostTrigger(true);
-
 		hctProbLink = 1;
 		hctProbLinkPreviouslyDiagnosed = 1;
 	}
@@ -103,10 +102,8 @@ void Interventions::Execute()
 				if(GetTime() <= 14610 + (i * 1461))
 					new SeedHct(pPerson,14610 + (i * 1461),false);
 
-		// All control and changes to the system are driven by the HCT event.
-
+		HbctInterventionRetentionTrigger = true;
 		pPerson->SetHctNcdCostTrigger(true);
-
 		hctProbLink = 1;
 		hctProbLinkPreviouslyDiagnosed = 1;
 	}

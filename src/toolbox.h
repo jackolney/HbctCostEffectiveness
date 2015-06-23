@@ -81,6 +81,8 @@ extern bool vctPocFlag;
 extern bool immediateArtFlag;
 extern bool adherenceFlag;
 
+extern bool HbctInterventionRetentionTrigger;
+
 ////////////////
 
 ////////////////

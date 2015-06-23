@@ -1,16 +1,27 @@
 #Test Script for CareCascade
 setwd("/Users/jack/git/HbctCostEffectiveness")
 
+# system("date")
+# popSize = 1000
+# dyn.load("./src/main.so")
+
+# Baseline <- .Call("CallCascade",popSize, 0, 0, 0, 0, 0)
+# Baseline
+
+# system("date")
+# popSize = 1000
+# dyn.load("./src/main.so")
+
+# HbctNcd <- .Call("CallCascade",popSize, 0, 1, 0, 0, 0)
+# HbctNcd
+
 system("date")
 popSize = 1000
 dyn.load("./src/main.so")
 
-Baseline <- .Call("CallCascade",popSize, 0, 0, 0, 0, 0)
-Baseline
+HbctNcdRetention <- .Call("CallCascade",popSize, 0, 0, 1, 0, 0)
+HbctNcdRetention
 
-system("date")
-popSize = 1000
-dyn.load("./src/main.so")
-
-Hbct <- .Call("CallCascade",popSize, 1, 0, 0, 0, 0)
-Hbct
+# sum(Baseline$sDALY)
+# sum(HbctNcd$sDALY)
+# sum(HbctNcdRetention$sDALY)

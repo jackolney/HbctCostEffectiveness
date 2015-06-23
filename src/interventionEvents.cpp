@@ -110,42 +110,41 @@ void HctHivTest::Execute()
 			ScheduleInitialCd4TestAfterHct(pPerson,GetTime());
 		SchedulePictHivTest(pPerson,GetTime());
 
-		// Update HctRetentionTrigger.
-		pPerson->SetHctRetentionTrigger(true);
-		
-		// InCare	
-		if(pPerson->GetInCareState()) {
-			// If scheduled to dropout of PreArt care, cancel it.
-			if(pPerson->GetPreArtDropoutDate() > 0) {
-				pPerson->SetPreArtDropoutDate(0);
-				ScheduleVctHivTest(pPerson,GetTime());
-				SchedulePictHivTest(pPerson,GetTime());
+		if(HbctInterventionRetentionTrigger == true) {
+			pPerson->SetHctRetentionTrigger(true);
+			// InCare	
+			if(pPerson->GetInCareState()) {
+				if(pPerson->GetPreArtDropoutDate() > 0) {
+					pPerson->SetPreArtDropoutDate(0);
+					ScheduleVctHivTest(pPerson,GetTime());
+					SchedulePictHivTest(pPerson,GetTime());
+				}
+			}
+			// ART
+			if(pPerson->GetArtInitiationState()) {
+				pPerson->SetArtAdherenceState(0.975);
+				// If ArtDropoutDate set, cancel it.
+				if(pPerson->GetPreArtDropoutDate() > 0) {
+					pPerson->SetPreArtDropoutDate(0);
+					ScheduleArtDropout(pPerson,GetTime());
+				}
 			}
 		}
-		
-		
-		// Allow hctRetentionTrigger to reduce the probability of loss by 50% across PreART care.
-		// If function specific. Functions that it will act upon:
-			// ReceiveCd4TestResult();
-			// AttendCd4TestResult();
-			// SecondaryCd4Test();
-
-		// ART
-		if(pPerson->GetArtInitiationState()) {
-			pPerson->SetArtAdherenceState(0.975);
-			// If ArtDropoutDate set, cancel it.
-			if(pPerson->GetPreArtDropoutDate() > 0) {
-				pPerson->SetPreArtDropoutDate(0);
-				ScheduleArtDropout(pPerson,GetTime());
-			}
-		}
-		
-		// If ArtDropoutDate set, then cancel it.
-		// ScheduleArtDropout (now uses hctRetentionTrigger to reduce times... by a bit. %?)
-
-
 	}
 }
+
+// if(HbctInterventionRetentionTrigger == true) {
+	// - Updates HctRetentionTrigger for each person tested through HBCT.
+	// - This leads to 50% increases in probability of:
+	// 	ReceiveCd4TestResult();
+	// 	AttendCd4TestResult();
+	// 	SecondaryCd4Test();
+	// - If PreArtDropout is scheduled, it is cancelled.
+	// - Visits to PICT & VCT are scheduled.
+	// - If ArtDropout is scheduled, it is cancelled.
+	// - ScheduleArtDropout() is re-run but with a 25% increase in time to dropout from ART.
+	// - The effect of these changes is to simulate the increased retention in care and adherence to tx among people tested through HBCT.
+// }
 
 /////////////////////
 /////////////////////

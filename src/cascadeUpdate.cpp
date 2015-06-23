@@ -146,7 +146,7 @@ bool ReceiveCd4TestResult(person * const thePerson, const double theTime)
 		 	}
 		}
 	} else {
-		// thePerson->GetHctRetentionTrigger() == true;                                                          
+		// thePerson->GetHctRetentionTrigger() == true;                                                    
 		if(thePerson->GetCd4TestCount() <= 1) {
 		 	switch(thePerson->GetDiagnosisRoute()) {
 				case 1: return theRng->Sample(0.9743416);  break;
@@ -177,7 +177,7 @@ bool AttendCd4TestResult(person * const thePerson, const double theTime)
 			thePerson->SetInCareState(false,theTime);
 			return false;
 		}
-	} else {
+	} else {                                                   
 		if(theRng->Sample(0.9743416) && !thePerson->GetEverArt())
 			return thePerson->Alive();
 		else {
@@ -199,7 +199,7 @@ bool SecondaryCd4Test(person * const thePerson, const double theTime)
 			case 3: return theRng->Sample(pictProbSecondaryCd4Test); break;
 			default: thePerson->SetInCareState(false,theTime); return false;
 		}
-	} else {
+	} else {                                               
 		switch(thePerson->GetDiagnosisRoute()) {
 			case 1: return theRng->Sample(0.875); break;
 			case 2: return theRng->Sample(0.875); break;
