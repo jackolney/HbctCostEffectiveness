@@ -166,6 +166,49 @@ void Interventions::Execute()
 				if(GetTime() <= 14610 + (i * 3652.5))
 					new SeedHct(pPerson,14610 + (i * 3652.5),false);
 
+		// Strategy 11
+		if(*p_HbctFrequency == 11) 
+			for(size_t i=0;i<4;i++)
+				if(GetTime() <= 14610 + (i * 1826.25))
+					new SeedHct(pPerson,14610 + (i * 1826.25),false);
+
+		// Strategy 12
+		if(*p_HbctFrequency == 12) {
+			const double HbctTime[4] = {0,730.5,3652.5,5478.75};
+			for(size_t i=0;i<4;i++)
+				if(GetTime() <= 14610 + HbctTime[i])
+					new SeedHct(pPerson,14610 + HbctTime[i],false);
+		}
+
+		// Strategy 13
+		if(*p_HbctFrequency == 13) 
+			for(size_t i=0;i<3;i++)
+				if(GetTime() <= 14610 + (i * 1826.25))
+					new SeedHct(pPerson,14610 + (i * 1826.25),false);
+
+		// Strategy 14
+		if(*p_HbctFrequency == 14) {
+			const double HbctTime[3] = {0,730.5,3652.5};
+			for(size_t i=0;i<3;i++)
+				if(GetTime() <= 14610 + HbctTime[i])
+					new SeedHct(pPerson,14610 + HbctTime[i],false);
+		}
+
+		// Strategy 15
+		if(*p_HbctFrequency == 15) {
+			const double HbctTime[2] = {0,730.5};
+			for(size_t i=0;i<2;i++)
+				if(GetTime() <= 14610 + HbctTime[i])
+					new SeedHct(pPerson,14610 + HbctTime[i],false);
+		}
+
+		// Strategy 16
+		if(*p_HbctFrequency == 16)
+			if(GetTime() <= 14610)
+				new SeedHct(pPerson,14610,false);
+
+		HbctInterventionRetentionTrigger = true;
+		pPerson->SetHctNcdCostTrigger(true);
 		hctProbLink = 1;
 		hctProbLinkPreviouslyDiagnosed = 1;
 	}
