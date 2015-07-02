@@ -1,27 +1,27 @@
 #Test Script for CareCascade
 setwd("/Users/jack/git/HbctCostEffectiveness")
 
-# system("date")
-# popSize = 1000
-# dyn.load("./src/main.so")
-
-# Baseline <- .Call("CallCascade",popSize, 0, 0, 0, 0, 0)
-# Baseline
-
-# system("date")
-# popSize = 1000
-# dyn.load("./src/main.so")
-
-# HbctNcd <- .Call("CallCascade",popSize, 0, 1, 0, 0, 0)
-# HbctNcd
-
 system("date")
 popSize = 1000
-dyn.load("./src/main.so")
+dyn.load("./main.so")
 
-HbctNcdRetention <- .Call("CallCascade",popSize, 0, 0, 1, 0, 0)
-HbctNcdRetention
-
-# sum(Baseline$sDALY)
-# sum(HbctNcd$sDALY)
-# sum(HbctNcdRetention$sDALY)
+Baseline <- .Call("CallCascade",popSize, 
+                0, #s_NaiveHbct,
+                0, #s_HbctNcd,
+                0, #s_HbctNcdPreArtRetention,
+                0, #s_HbctNcdRetention,
+                0, #s_HbctNcdRetentionAdherence,
+                0, #s_HbctFrequency,
+                0, #s_Vct,
+                0, #s_HbctPocCd4,
+                0, #s_Linkage,
+                0, #s_PreOutreach,
+                0, #s_ImprovedCare,
+                0, #s_PocCd4,
+                0, #s_VctPocCd4,
+                0, #s_ArtOutreach,
+                0, #s_ImmediateArt,
+                0, #s_UniversalTestAndTreat,
+                0, #s_Adherence,
+                0 #s_Calibration
+                )
