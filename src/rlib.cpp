@@ -101,7 +101,9 @@ extern unsigned int * Pie_3;
 /* Intervention Pointers */
 int const * p_NaiveHbct;
 int const * p_HbctNcd;
+int const * p_HbctNcdPreArtRetention;
 int const * p_HbctNcdRetention;
+int const * p_HbctNcdRetentionAdherence;
 int const * p_HbctFrequency;
 int const * p_Calibration;
 
@@ -185,21 +187,27 @@ extern "C" {
 SEXP CallCascade(SEXP s_pop,
 				 SEXP s_NaiveHbct,
 				 SEXP s_HbctNcd,
+				 SEXP s_HbctNcdPreArtRetention,
 				 SEXP s_HbctNcdRetention,
+				 SEXP s_HbctNcdRetentionAdherence,
 				 SEXP s_HbctFrequency,
 				 SEXP s_Calibration) {
 
 	PROTECT(s_pop = coerceVector(s_pop, REALSXP));
 	PROTECT(s_NaiveHbct = coerceVector(s_NaiveHbct, INTSXP));
 	PROTECT(s_HbctNcd = coerceVector(s_HbctNcd, INTSXP));
+	PROTECT(s_HbctNcdPreArtRetention = coerceVector(s_HbctNcdPreArtRetention, INTSXP));
 	PROTECT(s_HbctNcdRetention = coerceVector(s_HbctNcdRetention, INTSXP));
+	PROTECT(s_HbctNcdRetentionAdherence = coerceVector(s_HbctNcdRetentionAdherence, INTSXP));
 	PROTECT(s_HbctFrequency = coerceVector(s_HbctFrequency, INTSXP));
 	PROTECT(s_Calibration = coerceVector(s_Calibration, INTSXP));
 
 	/* Assigning Pointers */
 	p_NaiveHbct = INTEGER(s_NaiveHbct);
 	p_HbctNcd = INTEGER(s_HbctNcd);
+	p_HbctNcdPreArtRetention = INTEGER(s_HbctNcdPreArtRetention);
 	p_HbctNcdRetention = INTEGER(s_HbctNcdRetention);
+	p_HbctNcdRetentionAdherence = INTEGER(s_HbctNcdRetentionAdherence);
 	p_HbctFrequency = INTEGER(s_HbctFrequency);
 	p_Calibration = INTEGER(s_Calibration);
 
@@ -961,7 +969,7 @@ SEXP CallCascade(SEXP s_pop,
 	SET_VECTOR_ELT(sOUTNAMES,137,mkChar("sDALY_LYL"));
 	namesgets(sOUT,sOUTNAMES);
 
-	UNPROTECT(146);
+	UNPROTECT(148);
 	return(sOUT);
 	}
 

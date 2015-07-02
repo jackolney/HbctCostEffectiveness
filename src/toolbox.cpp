@@ -87,8 +87,6 @@ bool vctPocFlag = false;
 bool immediateArtFlag = false;
 bool adherenceFlag = false;
 
-bool HbctInterventionRetentionTrigger = false;
-
 ////////////////
 //DALY WEIGHTS//
 ////////////////

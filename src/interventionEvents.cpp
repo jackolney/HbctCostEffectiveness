@@ -24,10 +24,13 @@ extern Rng * theRng;
 /////////////////////
 /////////////////////
 
-SeedHct::SeedHct(person * const thePerson, const double Time, const bool poc) :
+SeedHct::SeedHct(person * const thePerson, const double Time, const bool poc, const bool PreArtRetention, const bool ArtRetention, const bool Adherence) :
 event(Time),
 pPerson(thePerson),
-pointOfCare(poc)
+pointOfCare(poc),
+preArtRetention(PreArtRetention),
+artRetention(ArtRetention),
+adherence(Adherence)
 {
 	if(Time >= thePerson->GetNatDeathDate()) { Cancel(); }
 }
@@ -45,7 +48,7 @@ bool SeedHct::CheckValid()
 
 void SeedHct::Execute()
 {
-	ScheduleHctHivTest(pPerson,GetTime(),pointOfCare);
+	ScheduleHctHivTest(pPerson,GetTime(),pointOfCare,preArtRetention,artRetention,adherence);
 }
 
 /////////////////////
@@ -77,10 +80,13 @@ void SeedPerpetualHct::Execute()
 /////////////////////
 /////////////////////
 
-HctHivTest::HctHivTest(person * const thePerson, const double Time, const bool poc) :
+HctHivTest::HctHivTest(person * const thePerson, const double Time, const bool poc, const bool PreArtRetention, const bool ArtRetention, const bool Adherence) :
 event(Time),
 pPerson(thePerson),
-pointOfCare(poc)
+pointOfCare(poc),
+preArtRetention(PreArtRetention),
+artRetention(ArtRetention),
+adherence(Adherence)
 {
 	thePerson->SetHctHivTestDate(Time);
 	if(Time >= thePerson->GetNatDeathDate()) { Cancel(); }
@@ -110,9 +116,10 @@ void HctHivTest::Execute()
 			ScheduleInitialCd4TestAfterHct(pPerson,GetTime());
 		SchedulePictHivTest(pPerson,GetTime());
 
-		if(HbctInterventionRetentionTrigger == true) {
-			pPerson->SetHctRetentionTrigger(true);
-			// InCare	
+
+		// InCare	
+		if(preArtRetention) {
+			pPerson->SetHctPreArtRetentionTrigger(true);
 			if(pPerson->GetInCareState()) {
 				if(pPerson->GetPreArtDropoutDate() > 0) {
 					pPerson->SetPreArtDropoutDate(0);
@@ -120,31 +127,35 @@ void HctHivTest::Execute()
 					SchedulePictHivTest(pPerson,GetTime());
 				}
 			}
-			// ART
+		}
+			
+		// ART
+		if(artRetention) {
+			pPerson->SetHctArtRetentionTrigger(true);
 			if(pPerson->GetArtInitiationState()) {
-				pPerson->SetArtAdherenceState(0.975);
-				// If ArtDropoutDate set, cancel it.
 				if(pPerson->GetPreArtDropoutDate() > 0) {
 					pPerson->SetPreArtDropoutDate(0);
 					ScheduleArtDropout(pPerson,GetTime());
 				}
-			}
+			}	
+		}
+
+		if(adherence) {
+			pPerson->SetArtAdherenceState(0.975);	
 		}
 	}
 }
 
-// if(HbctInterventionRetentionTrigger == true) {
-	// - Updates HctRetentionTrigger for each person tested through HBCT.
-	// - This leads to 50% increases in probability of:
-	// 	ReceiveCd4TestResult();
-	// 	AttendCd4TestResult();
-	// 	SecondaryCd4Test();
-	// - If PreArtDropout is scheduled, it is cancelled.
-	// - Visits to PICT & VCT are scheduled.
-	// - If ArtDropout is scheduled, it is cancelled.
-	// - ScheduleArtDropout() is re-run but with a 25% increase in time to dropout from ART.
-	// - The effect of these changes is to simulate the increased retention in care and adherence to tx among people tested through HBCT.
-// }
+// - Updates HctRetentionTrigger for each person tested through HBCT.
+// - This leads to 50% increases in probability of:
+// 	ReceiveCd4TestResult();
+// 	AttendCd4TestResult();
+// 	SecondaryCd4Test();
+// - If PreArtDropout is scheduled, it is cancelled.
+// - Visits to PICT & VCT are scheduled.
+// - If ArtDropout is scheduled, it is cancelled.
+// - ScheduleArtDropout() is re-run but with a 25% increase in time to dropout from ART.
+// - The effect of these changes is to simulate the increased retention in care and adherence to tx among people tested through HBCT.
 
 /////////////////////
 /////////////////////

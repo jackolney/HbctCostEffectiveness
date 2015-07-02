@@ -68,7 +68,8 @@ public:
 
 	/* HBCT Stuff */
 	void SetHctNcdCostTrigger(bool theValue)  { hctNcdCostTrigger = theValue; }
-	void SetHctRetentionTrigger(bool theValue) { hctRetentionTrigger = theValue; }
+	void SetHctPreArtRetentionTrigger(bool theValue) { hctPreArtRetentionTrigger = theValue; }
+	void SetHctArtRetentionTrigger(bool theValue) { hctArtRetentionTrigger = theValue; }
 	void SetPreArtDropoutDate(double theDate) { preArtDropoutDate = theDate; }
 	void SetArtDropoutDate(double theDate) { artDropoutDate = theDate; }
 	
@@ -146,7 +147,8 @@ public:
 
 	/* HBCT Stuff */
 	bool GetHctNcdCostTrigger() const { return hctNcdCostTrigger; }
-	bool GetHctRetentionTrigger() const { return hctRetentionTrigger; }
+	bool GetHctPreArtRetentionTrigger() const { return hctPreArtRetentionTrigger; }
+	bool GetHctArtRetentionTrigger() const { return hctArtRetentionTrigger; }
 	double GetPreArtDropoutDate() const { return preArtDropoutDate; }
 	double GetArtDropoutDate() const { return artDropoutDate; }
 	
@@ -248,7 +250,8 @@ private:
 
 	/* HBCT STUFF */
 	bool hctNcdCostTrigger;
-	bool hctRetentionTrigger;
+	bool hctPreArtRetentionTrigger;
+	bool hctArtRetentionTrigger;
 	double preArtDropoutDate;
 	double artDropoutDate;
 	

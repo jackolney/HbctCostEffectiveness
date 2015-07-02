@@ -21,12 +21,12 @@ using namespace std;
 ////////////////////
 ////////////////////
 
-void ScheduleHctHivTest(person * const thePerson, const double theTime, const bool poc)
+void ScheduleHctHivTest(person * const thePerson, const double theTime, const bool poc, const bool PreArtRetention, const bool ArtRetention, const bool Adherence)
 {
 	if(thePerson->GetBirthDay() != 0 && theTime >= 14610 && theTime < 21915) {
 		const double diagDay = theRng->SampleExpDist(hctHivTestTime);
 		if(diagDay <= 365.25)
-			new HctHivTest(thePerson,theTime + diagDay,poc);
+			new HctHivTest(thePerson,theTime + diagDay,poc,PreArtRetention,ArtRetention,Adherence);
 	}
 }
 
@@ -36,7 +36,7 @@ void ScheduleHctHivTest(person * const thePerson, const double theTime, const bo
 void SchedulePerpetualHctHivTest(person * const thePerson, const double theTime)
 {
 	if(thePerson->GetBirthDay() != 0 && theTime >= 14610 && theTime < 21915)
-		new HctHivTest(thePerson,theTime + (theRng->doub() * 365.25),false);
+		new HctHivTest(thePerson,theTime + (theRng->doub() * 365.25),false,false,false,false);
 }
 
 ////////////////////
