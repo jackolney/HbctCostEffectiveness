@@ -68,6 +68,8 @@ extern double * theAidsDeath_2010_Age;
 extern double * theDALY_OffArt;
 extern double * theDALY_OnArt;
 extern double * theDALY_LYL;
+extern double * the909090;
+extern double * the959595;
 
 /* Calibration pointers */
 extern double * C1;
@@ -289,7 +291,7 @@ SEXP CallCascade(SEXP s_pop,
 	sGuidelines_Death_200350_ArtLessSixMonths, sGuidelines_Death_200350_ArtMoreSixMonths, sGuidelines_Death_200350_OffArt, sGuidelines_Death_200_NeverDiag, sGuidelines_Death_200_DiagNotInCareNeverCare, sGuidelines_Death_200_DiagNotInCareEverCare, sGuidelines_Death_200_InCareNeverArt, sGuidelines_Death_200_ArtLessSixMonths,
 	sGuidelines_Death_200_ArtMoreSixMonths, sGuidelines_Death_200_OffArt, sGuidelines_Art_500, sGuidelines_Art_350500, sGuidelines_Art_200350, sGuidelines_Art_200, sGuidelines_NewInfectionsAdult, sGuidelines_NewDiagnoses, sGuidelines_PreArtDropout, sGuidelines_ArtDropout;
 
-	SEXP sMid2010;
+	SEXP sMid2010, s909090, s959595;
 
 	PROTECT(sCARE = allocVector(REALSXP,6));
 	PROTECT(sDALY = allocVector(REALSXP,20));
@@ -429,6 +431,8 @@ SEXP CallCascade(SEXP s_pop,
 	PROTECT(sDALY_OffArt = allocVector(REALSXP,20));
 	PROTECT(sDALY_OnArt = allocVector(REALSXP,20));
 	PROTECT(sDALY_LYL = allocVector(REALSXP,20));
+	PROTECT(s909090 = allocVector(REALSXP,4));
+	PROTECT(s959595 = allocVector(REALSXP,4));
 
 	double * pCARE = REAL(sCARE);
 	double * pDALY = REAL(sDALY);
@@ -498,6 +502,8 @@ SEXP CallCascade(SEXP s_pop,
 	double * pDALY_OffArt = REAL(sDALY_OffArt);
 	double * pDALY_OnArt = REAL(sDALY_OnArt);
 	double * pDALY_LYL = REAL(sDALY_LYL);
+	double * p909090 = REAL(s909090);
+	double * p959595 = REAL(s959595);
 
 	int * pGuidelines_PopDist_HivNegative = INTEGER(sGuidelines_PopDist_HivNegative);
 	int * pGuidelines_PopDist_500_NeverDiag = INTEGER(sGuidelines_PopDist_500_NeverDiag);
@@ -590,8 +596,11 @@ SEXP CallCascade(SEXP s_pop,
 			pPie_1[i] = Pie_1[i];
 			pPie_2[i] = Pie_2[i];
 		}
-		if(i<4)
+		if(i<4) {
 			pPOP_NoArtCd4_2007[i] = thePOP_NoArtCd4_2007[i];
+			p909090[i] = the909090[i];
+			p959595[i] = the959595[i];
+		}
 		if(i<5)
 			pCLINIC[i] = theCLINIC[i];
 		if(i<6) {
@@ -732,7 +741,7 @@ SEXP CallCascade(SEXP s_pop,
 		pGuidelines_ArtDropout[i] = theGuidelines_ArtDropout[i];
 	}
 
-	PROTECT(sOUT = allocVector(VECSXP,138));
+	PROTECT(sOUT = allocVector(VECSXP,140));
 	SET_VECTOR_ELT(sOUT,0,sCARE);
 	SET_VECTOR_ELT(sOUT,1,sDALY);
 	SET_VECTOR_ELT(sOUT,2,sCOST);
@@ -871,8 +880,10 @@ SEXP CallCascade(SEXP s_pop,
 	SET_VECTOR_ELT(sOUT,135,sDALY_OffArt);
 	SET_VECTOR_ELT(sOUT,136,sDALY_OnArt);
 	SET_VECTOR_ELT(sOUT,137,sDALY_LYL);
+	SET_VECTOR_ELT(sOUT,138,s909090);
+	SET_VECTOR_ELT(sOUT,139,s959595);
 
-	PROTECT(sOUTNAMES = allocVector(VECSXP,138));
+	PROTECT(sOUTNAMES = allocVector(VECSXP,140));
 	SET_VECTOR_ELT(sOUTNAMES,0,mkChar("sCARE"));
 	SET_VECTOR_ELT(sOUTNAMES,1,mkChar("sDALY"));
 	SET_VECTOR_ELT(sOUTNAMES,2,mkChar("sCOST"));
@@ -1011,9 +1022,11 @@ SEXP CallCascade(SEXP s_pop,
 	SET_VECTOR_ELT(sOUTNAMES,135,mkChar("sDALY_OffArt"));
 	SET_VECTOR_ELT(sOUTNAMES,136,mkChar("sDALY_OnArt"));
 	SET_VECTOR_ELT(sOUTNAMES,137,mkChar("sDALY_LYL"));
+	SET_VECTOR_ELT(sOUTNAMES,138,mkChar("s909090"));
+	SET_VECTOR_ELT(sOUTNAMES,139,mkChar("s959595"));
 	namesgets(sOUT,sOUTNAMES);
 
-	UNPROTECT(159);
+	UNPROTECT(161);
 	return(sOUT);
 	}
 

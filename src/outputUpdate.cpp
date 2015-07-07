@@ -52,6 +52,8 @@ extern double * theDeath;
 extern double * theAidsDeath;
 extern double * theDeath_2010_Age;
 extern double * theAidsDeath_2010_Age;
+extern double * the909090;
+extern double * the959595;
 
 /////////////////////
 /////////////////////
@@ -324,5 +326,43 @@ void WriteIncidence(unsigned int const &theIncidentCases, const size_t theIndex)
 {
 	theINCIDENCE[theIndex] = theIncidentCases;
 }
+
+/////////////////////
+/////////////////////
+
+void Write909090(person * const thePerson)
+{
+	// the909090[4]
+	if(18262.5 > thePerson->GetBirthDay() && thePerson->Alive()) {
+		if(thePerson->GetSeroStatus())
+			the909090[0]++;
+		if(thePerson->GetDiagnosedState())
+			the909090[1]++;
+		if(thePerson->GetArtInitiationState())
+			the909090[2]++;
+		if(thePerson->GetArtInitiationState() && thePerson->GetArtAdherenceState())
+			the909090[3]++;			
+	}
+}
+
+/////////////////////
+/////////////////////
+
+
+void Write959595(person * const thePerson)
+{
+	// the959595[4]
+	if(21915 > thePerson->GetBirthDay() && thePerson->Alive()) {
+		if(thePerson->GetSeroStatus())
+			the959595[0]++;
+		if(thePerson->GetDiagnosedState())
+			the959595[1]++;
+		if(thePerson->GetArtInitiationState())
+			the959595[2]++;
+		if(thePerson->GetArtInitiationState() && thePerson->GetArtAdherenceState())
+			the959595[3]++;			
+	}
+}
+
 /////////////////////
 /////////////////////

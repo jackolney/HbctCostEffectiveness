@@ -25,3 +25,13 @@ Baseline <- .Call("CallCascade",popSize,
                 0, #s_Adherence,
                 0 #s_Calibration
                 )
+
+# 90-90-90
+Baseline$s909090[2] / Baseline$s909090[1]
+Baseline$s909090[3] / Baseline$s909090[2]
+Baseline$s909090[4] / Baseline$s909090[3]
+
+# 95-95-95
+Baseline$s959595[2] / Baseline$s959595[1]
+Baseline$s959595[3] / Baseline$s959595[2]
+Baseline$s959595[4] / Baseline$s959595[3]

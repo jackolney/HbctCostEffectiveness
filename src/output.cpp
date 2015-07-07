@@ -60,6 +60,8 @@ double * theAidsDeath_2010_Age;
 double * theDALY_OffArt;
 double * theDALY_OnArt;
 double * theDALY_LYL;
+double * the909090;
+double * the959595;
 
 /////////////////////
 /////////////////////
@@ -110,6 +112,10 @@ void Output::Execute()
 		Write2012(pPerson);
 	if(GetTime() == 16436.25)
 		Write2014(pPerson);
+	if(GetTime() == 18262.5)
+		Write909090(pPerson);
+	if(GetTime() == 21915)
+		Write959595(pPerson);
 }
 
 /////////////////////
@@ -163,10 +169,15 @@ void CreateOutputArray()
 	theDALY_OffArt = new double[20];
 	theDALY_OnArt = new double[20];
 	theDALY_LYL = new double[20];
+	the909090 = new double[4];
+	the959595 = new double[4];
 	
 	for(size_t i=0;i<66;i++) {
-		if(i<4)
+		if(i<4) {
 			thePOP_NoArtCd4_2007[i] = 0;
+			the909090[i] = 0;
+			the959595[i] = 0;
+		}
 		if(i<5)
 			theCLINIC[i] = 0;
 		if(i<6)

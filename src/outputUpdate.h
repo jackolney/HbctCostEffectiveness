@@ -38,4 +38,8 @@ void WriteWho(person * const thePerson, const size_t theIndex);
 
 void WriteIncidence(unsigned int const &theIncidentCases, const size_t theIndex);
 
+void Write909090(person * const thePerson);
+
+void Write959595(person * const thePerson);
+
 #endif /* defined(__priorityQ__outputUpdate__) */
