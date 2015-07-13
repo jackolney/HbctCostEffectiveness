@@ -169,12 +169,12 @@ void WriteGuidelinesPopDist(person * const thePerson, const size_t theIndex)
 void WriteGuidelinesDeath(person * const thePerson)
 {
 	if(theQ->GetTime() >= 10957.5) {
-		double yr [36];
-		for(size_t i=0; i<36; i++)
+		double yr [56];
+		for(size_t i=0; i<56; i++)
 			yr[i] = 11322.75 + (i * 365.25);
 
 		unsigned int i=0;
-		while(theQ->GetTime() >= yr[i] && i<36)
+		while(theQ->GetTime() >= yr[i] && i<56)
 			i++;
 
 		if(!thePerson->GetSeroStatus()) {
@@ -249,12 +249,12 @@ void WriteGuidelinesDeath(person * const thePerson)
 void WriteGuidelinesArtInitiation(person * const thePerson)
 {
 	if(theQ->GetTime() >= 10957.5) {
-		double yr [36];
-		for(size_t i=0; i<36; i++)
+		double yr [56];
+		for(size_t i=0; i<56; i++)
 			yr[i] = 11322.75 + (i * 365.25);
 
 		unsigned int i=0;
-		while(theQ->GetTime() >= yr[i] && i<36)
+		while(theQ->GetTime() >= yr[i] && i<56)
 			i++;
 
 		if(thePerson->GetCurrentCd4() == 4)
@@ -274,12 +274,12 @@ void WriteGuidelinesArtInitiation(person * const thePerson)
 void WriteGuidelinesNewInfection(person * const thePerson)
 {
 	if(theQ->GetTime() >= 10957.5) {
-		double yr [36];
-		for(size_t i=0; i<36; i++)
+		double yr [56];
+		for(size_t i=0; i<56; i++)
 			yr[i] = 11322.75 + (i * 365.25);
 
 		unsigned int i=0;
-		while(theQ->GetTime() >= yr[i] && i<36)
+		while(theQ->GetTime() >= yr[i] && i<56)
 			i++;
 
 		if(thePerson->GetAge(theQ->GetTime()) > 15 * 365.25)
@@ -293,12 +293,12 @@ void WriteGuidelinesNewInfection(person * const thePerson)
 void WriteGuidelinesNewDiagnosis()
 {
 	if(theQ->GetTime() >= 10957.5) {
-		double yr [36];
-		for(size_t i=0; i<36; i++)
+		double yr [56];
+		for(size_t i=0; i<56; i++)
 			yr[i] = 11322.75 + (i * 365.25);
 
 		unsigned int i=0;
-		while(theQ->GetTime() >= yr[i] && i<36)
+		while(theQ->GetTime() >= yr[i] && i<56)
 			i++;
 
 		theGuidelines_NewDiagnoses[i]++;
@@ -311,12 +311,12 @@ void WriteGuidelinesNewDiagnosis()
 void WriteGuidelinesPreArtDropout()
 {
 	if(theQ->GetTime() >= 10957.5) {
-		double yr [36];
-		for(size_t i=0; i<36; i++)
+		double yr [56];
+		for(size_t i=0; i<56; i++)
 			yr[i] = 11322.75 + (i * 365.25);
 
 		unsigned int i=0;
-		while(theQ->GetTime() >= yr[i] && i<36)
+		while(theQ->GetTime() >= yr[i] && i<56)
 			i++;
 
 		theGuidelines_PreArtDropout[i]++;
@@ -329,12 +329,12 @@ void WriteGuidelinesPreArtDropout()
 void WriteGuidelinesArtDropout()
 {
 	if(theQ->GetTime() >= 10957.5) {
-		double yr [36];
-		for(size_t i=0; i<36; i++)
+		double yr [56];
+		for(size_t i=0; i<56; i++)
 			yr[i] = 11322.75 + (i * 365.25);
 
 		unsigned int i=0;
-		while(theQ->GetTime() >= yr[i] && i<36)
+		while(theQ->GetTime() >= yr[i] && i<56)
 			i++;
 
 		theGuidelines_ArtDropout[i]++;

@@ -91,8 +91,8 @@ int * mid2010;
 
 void SeedGuidelinesOutput(person * const thePerson)
 {
-	double yr [36];
-	for(size_t i=0; i<36; i++) {
+	double yr [56];
+	for(size_t i=0; i<56; i++) {
 		yr[i] = 11140.12 + (i * 365.25);
 		if(thePerson->GetBirthDay() < yr[i])
 			new GuidelinesOutput(thePerson,yr[i],i);
@@ -126,76 +126,76 @@ void GuidelinesOutput::Execute()
 
 void CreateGuidelinesArray()
 {
-	theGuidelines_PopDist_HivNegative = new int[36];
-	theGuidelines_PopDist_500_NeverDiag = new int[36];
-	theGuidelines_PopDist_500_DiagNotInCareNeverCare = new int[36];
-	theGuidelines_PopDist_500_DiagNotInCareEverCare = new int[36];
-	theGuidelines_PopDist_500_InCareNeverArt = new int[36];
-	theGuidelines_PopDist_500_ArtLessSixMonths = new int[36];
-	theGuidelines_PopDist_500_ArtMoreSixMonths = new int[36];
-	theGuidelines_PopDist_500_OffArt = new int[36];
-	theGuidelines_PopDist_350500_NeverDiag = new int[36];
-	theGuidelines_PopDist_350500_DiagNotInCareNeverCare = new int[36];
-	theGuidelines_PopDist_350500_DiagNotInCareEverCare = new int[36];
-	theGuidelines_PopDist_350500_InCareNeverArt = new int[36];
-	theGuidelines_PopDist_350500_ArtLessSixMonths = new int[36];
-	theGuidelines_PopDist_350500_ArtMoreSixMonths = new int[36];
-	theGuidelines_PopDist_350500_OffArt = new int[36];
-	theGuidelines_PopDist_200350_NeverDiag = new int[36];
-	theGuidelines_PopDist_200350_DiagNotInCareNeverCare = new int[36];
-	theGuidelines_PopDist_200350_DiagNotInCareEverCare = new int[36];
-	theGuidelines_PopDist_200350_InCareNeverArt = new int[36];
-	theGuidelines_PopDist_200350_ArtLessSixMonths = new int[36];
-	theGuidelines_PopDist_200350_ArtMoreSixMonths = new int[36];
-	theGuidelines_PopDist_200350_OffArt = new int[36];
-	theGuidelines_PopDist_200_NeverDiag = new int[36];
-	theGuidelines_PopDist_200_DiagNotInCareNeverCare = new int[36];
-	theGuidelines_PopDist_200_DiagNotInCareEverCare = new int[36];
-	theGuidelines_PopDist_200_InCareNeverArt = new int[36];
-	theGuidelines_PopDist_200_ArtLessSixMonths = new int[36];
-	theGuidelines_PopDist_200_ArtMoreSixMonths = new int[36];
-	theGuidelines_PopDist_200_OffArt = new int[36];
-	theGuidelines_Death_HivNegative = new int[36];
-	theGuidelines_Death_500_NeverDiag = new int[36];
-	theGuidelines_Death_500_DiagNotInCareNeverCare = new int[36];
-	theGuidelines_Death_500_DiagNotInCareEverCare = new int[36];
-	theGuidelines_Death_500_InCareNeverArt = new int[36];
-	theGuidelines_Death_500_ArtLessSixMonths = new int[36];
-	theGuidelines_Death_500_ArtMoreSixMonths = new int[36];
-	theGuidelines_Death_500_OffArt = new int[36];
-	theGuidelines_Death_350500_NeverDiag = new int[36];
-	theGuidelines_Death_350500_DiagNotInCareNeverCare = new int[36];
-	theGuidelines_Death_350500_DiagNotInCareEverCare = new int[36];
-	theGuidelines_Death_350500_InCareNeverArt = new int[36];
-	theGuidelines_Death_350500_ArtLessSixMonths = new int[36];
-	theGuidelines_Death_350500_ArtMoreSixMonths = new int[36];
-	theGuidelines_Death_350500_OffArt = new int[36];
-	theGuidelines_Death_200350_NeverDiag = new int[36];
-	theGuidelines_Death_200350_DiagNotInCareNeverCare = new int[36];
-	theGuidelines_Death_200350_DiagNotInCareEverCare = new int[36];
-	theGuidelines_Death_200350_InCareNeverArt = new int[36];
-	theGuidelines_Death_200350_ArtLessSixMonths = new int[36];
-	theGuidelines_Death_200350_ArtMoreSixMonths = new int[36];
-	theGuidelines_Death_200350_OffArt = new int[36];
-	theGuidelines_Death_200_NeverDiag = new int[36];
-	theGuidelines_Death_200_DiagNotInCareNeverCare = new int[36];
-	theGuidelines_Death_200_DiagNotInCareEverCare = new int[36];
-	theGuidelines_Death_200_InCareNeverArt = new int[36];
-	theGuidelines_Death_200_ArtLessSixMonths = new int[36];
-	theGuidelines_Death_200_ArtMoreSixMonths = new int[36];
-	theGuidelines_Death_200_OffArt = new int[36];
-	theGuidelines_Art_500 = new int[36];
-	theGuidelines_Art_350500 = new int[36];
-	theGuidelines_Art_200350 = new int[36];
-	theGuidelines_Art_200 = new int[36];
-	theGuidelines_NewInfectionsAdult = new int[36];
-	theGuidelines_NewDiagnoses = new int[36];
-	theGuidelines_PreArtDropout = new int[36];
-	theGuidelines_ArtDropout = new int[36];
+	theGuidelines_PopDist_HivNegative = new int[56];
+	theGuidelines_PopDist_500_NeverDiag = new int[56];
+	theGuidelines_PopDist_500_DiagNotInCareNeverCare = new int[56];
+	theGuidelines_PopDist_500_DiagNotInCareEverCare = new int[56];
+	theGuidelines_PopDist_500_InCareNeverArt = new int[56];
+	theGuidelines_PopDist_500_ArtLessSixMonths = new int[56];
+	theGuidelines_PopDist_500_ArtMoreSixMonths = new int[56];
+	theGuidelines_PopDist_500_OffArt = new int[56];
+	theGuidelines_PopDist_350500_NeverDiag = new int[56];
+	theGuidelines_PopDist_350500_DiagNotInCareNeverCare = new int[56];
+	theGuidelines_PopDist_350500_DiagNotInCareEverCare = new int[56];
+	theGuidelines_PopDist_350500_InCareNeverArt = new int[56];
+	theGuidelines_PopDist_350500_ArtLessSixMonths = new int[56];
+	theGuidelines_PopDist_350500_ArtMoreSixMonths = new int[56];
+	theGuidelines_PopDist_350500_OffArt = new int[56];
+	theGuidelines_PopDist_200350_NeverDiag = new int[56];
+	theGuidelines_PopDist_200350_DiagNotInCareNeverCare = new int[56];
+	theGuidelines_PopDist_200350_DiagNotInCareEverCare = new int[56];
+	theGuidelines_PopDist_200350_InCareNeverArt = new int[56];
+	theGuidelines_PopDist_200350_ArtLessSixMonths = new int[56];
+	theGuidelines_PopDist_200350_ArtMoreSixMonths = new int[56];
+	theGuidelines_PopDist_200350_OffArt = new int[56];
+	theGuidelines_PopDist_200_NeverDiag = new int[56];
+	theGuidelines_PopDist_200_DiagNotInCareNeverCare = new int[56];
+	theGuidelines_PopDist_200_DiagNotInCareEverCare = new int[56];
+	theGuidelines_PopDist_200_InCareNeverArt = new int[56];
+	theGuidelines_PopDist_200_ArtLessSixMonths = new int[56];
+	theGuidelines_PopDist_200_ArtMoreSixMonths = new int[56];
+	theGuidelines_PopDist_200_OffArt = new int[56];
+	theGuidelines_Death_HivNegative = new int[56];
+	theGuidelines_Death_500_NeverDiag = new int[56];
+	theGuidelines_Death_500_DiagNotInCareNeverCare = new int[56];
+	theGuidelines_Death_500_DiagNotInCareEverCare = new int[56];
+	theGuidelines_Death_500_InCareNeverArt = new int[56];
+	theGuidelines_Death_500_ArtLessSixMonths = new int[56];
+	theGuidelines_Death_500_ArtMoreSixMonths = new int[56];
+	theGuidelines_Death_500_OffArt = new int[56];
+	theGuidelines_Death_350500_NeverDiag = new int[56];
+	theGuidelines_Death_350500_DiagNotInCareNeverCare = new int[56];
+	theGuidelines_Death_350500_DiagNotInCareEverCare = new int[56];
+	theGuidelines_Death_350500_InCareNeverArt = new int[56];
+	theGuidelines_Death_350500_ArtLessSixMonths = new int[56];
+	theGuidelines_Death_350500_ArtMoreSixMonths = new int[56];
+	theGuidelines_Death_350500_OffArt = new int[56];
+	theGuidelines_Death_200350_NeverDiag = new int[56];
+	theGuidelines_Death_200350_DiagNotInCareNeverCare = new int[56];
+	theGuidelines_Death_200350_DiagNotInCareEverCare = new int[56];
+	theGuidelines_Death_200350_InCareNeverArt = new int[56];
+	theGuidelines_Death_200350_ArtLessSixMonths = new int[56];
+	theGuidelines_Death_200350_ArtMoreSixMonths = new int[56];
+	theGuidelines_Death_200350_OffArt = new int[56];
+	theGuidelines_Death_200_NeverDiag = new int[56];
+	theGuidelines_Death_200_DiagNotInCareNeverCare = new int[56];
+	theGuidelines_Death_200_DiagNotInCareEverCare = new int[56];
+	theGuidelines_Death_200_InCareNeverArt = new int[56];
+	theGuidelines_Death_200_ArtLessSixMonths = new int[56];
+	theGuidelines_Death_200_ArtMoreSixMonths = new int[56];
+	theGuidelines_Death_200_OffArt = new int[56];
+	theGuidelines_Art_500 = new int[56];
+	theGuidelines_Art_350500 = new int[56];
+	theGuidelines_Art_200350 = new int[56];
+	theGuidelines_Art_200 = new int[56];
+	theGuidelines_NewInfectionsAdult = new int[56];
+	theGuidelines_NewDiagnoses = new int[56];
+	theGuidelines_PreArtDropout = new int[56];
+	theGuidelines_ArtDropout = new int[56];
 
 	mid2010 = new int[2];
 	
-	for(size_t i=0;i<36;i++) {
+	for(size_t i=0;i<56;i++) {
 		if(i<2)
 			mid2010[i] = 0;
 		theGuidelines_PopDist_HivNegative[i] = 0;

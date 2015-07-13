@@ -68,8 +68,8 @@ double * the959595;
 
 void SeedOutput(person * const thePerson)
 {
-	double yr [66];
-	for(size_t i=0; i<66; i++) {
+	double yr [86];
+	for(size_t i=0; i<86; i++) {
 		yr[i] = 365.25 + (i * 365.25);
 		if(thePerson->GetBirthDay() < yr[i])
 			new Output(thePerson,yr[i],i);
@@ -97,7 +97,7 @@ bool Output::CheckValid()
 
 void Output::Execute()
 {
-	if(GetTime() >= 16801.5 && GetTime() < 24107.5) {
+	if(GetTime() >= 16801.5 && GetTime() < 31411.5) {
 		WriteDaly(pPerson,index);
 		WriteCost(pPerson,GetTime());
 	}
@@ -124,15 +124,15 @@ void Output::Execute()
 void CreateOutputArray()
 {
 	theCARE = new double[6]; // NeverDiagnosed, DiagnosedButNeverLinkedToCare, DiagnosedLinkedButNeverInitiatedArt, ArtLate, ArtButDiedOffArt, ArtEarly.
-	theDALY = new double[20];
-	theCOST = new double[20];
-	thePOP = new double[66];
-	theHIV = new double[66];
-	thePOP_15to49 = new double[66];
-	theHIV_15to49 = new double[66];
-	theART_15to49 = new double[66];
-	thePOP_15plus = new double[66];
-	theAidsDeath_15plus = new double[66];
+	theDALY = new double[40];
+	theCOST = new double[40];
+	thePOP = new double[86];
+	theHIV = new double[86];
+	thePOP_15to49 = new double[86];
+	theHIV_15to49 = new double[86];
+	theART_15to49 = new double[86];
+	thePOP_15plus = new double[86];
+	theAidsDeath_15plus = new double[86];
 	thePOP_AgeSex_2007 = new double[20];
 	theHIV_AgeSex_2007 = new double[20];
 	thePOP_NoArtCd4_2007 = new double[4];
@@ -140,39 +140,39 @@ void CreateOutputArray()
 	theHIV_AgeSex_2012 = new double[16];
 	thePOP_AgeSex_2014 = new double[10];
 	theHIV_AgeSex_2014 = new double[10];
-	theCD4_200 = new double[66];
-	theCD4_200350 = new double[66];
-	theCD4_350500 = new double[66];
-	theCD4_500 = new double[66];
-	theCD4_200_Art = new double[66];
-	theCD4_200350_Art = new double[66];
-	theCD4_350500_Art = new double[66];
-	theCD4_500_Art = new double[66];
-	theWHO_1 = new double[66];
-	theWHO_2 = new double[66];
-	theWHO_3 = new double[66];
-	theWHO_4 = new double[66];
-	theWHO_1_Art = new double[66];
-	theWHO_2_Art = new double[66];
-	theWHO_3_Art = new double[66];
-	theWHO_4_Art = new double[66];
-	theINCIDENCE = new double[66];
-	thePreArtCOST = new double[20];
-	theArtCOST = new double[20];
-	thePreArtCOST_Hiv = new double[20];
-	theArtCOST_Hiv = new double[20];
+	theCD4_200 = new double[86];
+	theCD4_200350 = new double[86];
+	theCD4_350500 = new double[86];
+	theCD4_500 = new double[86];
+	theCD4_200_Art = new double[86];
+	theCD4_200350_Art = new double[86];
+	theCD4_350500_Art = new double[86];
+	theCD4_500_Art = new double[86];
+	theWHO_1 = new double[86];
+	theWHO_2 = new double[86];
+	theWHO_3 = new double[86];
+	theWHO_4 = new double[86];
+	theWHO_1_Art = new double[86];
+	theWHO_2_Art = new double[86];
+	theWHO_3_Art = new double[86];
+	theWHO_4_Art = new double[86];
+	theINCIDENCE = new double[86];
+	thePreArtCOST = new double[40];
+	theArtCOST = new double[40];
+	thePreArtCOST_Hiv = new double[40];
+	theArtCOST_Hiv = new double[40];
 	theCLINIC = new double[5]; // NeverDiagnosed, DiagnosedButNeverInitiatedArt, ArtLate, ArtButDiedOffArt, ArtEarly.
-	theDeath = new double[66];
-	theAidsDeath = new double[66];
+	theDeath = new double[86];
+	theAidsDeath = new double[86];
 	theDeath_2010_Age = new double[20];
 	theAidsDeath_2010_Age = new double[20];
-	theDALY_OffArt = new double[20];
-	theDALY_OnArt = new double[20];
-	theDALY_LYL = new double[20];
+	theDALY_OffArt = new double[40];
+	theDALY_OnArt = new double[40];
+	theDALY_LYL = new double[40];
 	the909090 = new double[4];
 	the959595 = new double[4];
-	
-	for(size_t i=0;i<66;i++) {
+
+	for(size_t i=0;i<86;i++) {
 		if(i<4) {
 			thePOP_NoArtCd4_2007[i] = 0;
 			the909090[i] = 0;
@@ -195,6 +195,8 @@ void CreateOutputArray()
 			theHIV_AgeSex_2007[i] = 0;
 			theDeath_2010_Age[i] = 0;
 			theAidsDeath_2010_Age[i] = 0;
+		}
+		if(i<40) {
 			theDALY[i] = 0;
 			theCOST[i] = 0;
 			thePreArtCOST[i] = 0;
@@ -203,7 +205,7 @@ void CreateOutputArray()
 			theArtCOST_Hiv[i] = 0;
 			theDALY_OffArt[i] = 0;
 			theDALY_OnArt[i] = 0;
-			theDALY_LYL[i] = 0;		
+			theDALY_LYL[i] = 0;
 		}
 		thePOP[i] = 0;
 		thePOP_15to49[i] = 0;
