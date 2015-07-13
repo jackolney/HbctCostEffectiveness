@@ -261,7 +261,7 @@ SEXP CallCascade(SEXP s_pop,
 	cout << "Hello, Jack - the model is running..." << endl;
 	cout << "Caution: WP19 version. Runs until 2035." << endl;
 	theRng = new Rng(mach_absolute_time());
-	theQ = new eventQ(0,(66 * 365.25) + 1);
+	theQ = new eventQ(0,(86 * 365.25) + 1);
 	population * thePop = new population(*REAL(s_pop));
 	theQ->RunEvents();
 	delete theQ;
