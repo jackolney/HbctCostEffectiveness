@@ -106,7 +106,26 @@ int const * p_HbctNcd;
 int const * p_HbctNcdPreArtRetention;
 int const * p_HbctNcdRetention;
 int const * p_HbctNcdRetentionAdherence;
-int const * p_HbctFrequency;
+int const * p_Hbct_2016;
+int const * p_Hbct_2017;
+int const * p_Hbct_2018;
+int const * p_Hbct_2019;
+int const * p_Hbct_2020;
+int const * p_Hbct_2021;
+int const * p_Hbct_2022;
+int const * p_Hbct_2023;
+int const * p_Hbct_2024;
+int const * p_Hbct_2025;
+int const * p_Hbct_2026;
+int const * p_Hbct_2027;
+int const * p_Hbct_2028;
+int const * p_Hbct_2029;
+int const * p_Hbct_2030;
+int const * p_Hbct_2031;
+int const * p_Hbct_2032;
+int const * p_Hbct_2033;
+int const * p_Hbct_2034;
+int const * p_Hbct_2035;
 int const * p_Vct;
 int const * p_HbctPocCd4;
 int const * p_Linkage;
@@ -203,7 +222,26 @@ SEXP CallCascade(SEXP s_pop,
 				 SEXP s_HbctNcdPreArtRetention,
 				 SEXP s_HbctNcdRetention,
 				 SEXP s_HbctNcdRetentionAdherence,
-				 SEXP s_HbctFrequency,
+				 SEXP s_Hbct_2016,
+				 SEXP s_Hbct_2017,
+				 SEXP s_Hbct_2018,
+				 SEXP s_Hbct_2019,
+				 SEXP s_Hbct_2020,
+				 SEXP s_Hbct_2021,
+				 SEXP s_Hbct_2022,
+				 SEXP s_Hbct_2023,
+				 SEXP s_Hbct_2024,
+				 SEXP s_Hbct_2025,
+				 SEXP s_Hbct_2026,
+				 SEXP s_Hbct_2027,
+				 SEXP s_Hbct_2028,
+				 SEXP s_Hbct_2029,
+				 SEXP s_Hbct_2030,
+				 SEXP s_Hbct_2031,
+				 SEXP s_Hbct_2032,
+				 SEXP s_Hbct_2033,
+				 SEXP s_Hbct_2034,
+				 SEXP s_Hbct_2035,
 				 SEXP s_Vct,
 				 SEXP s_HbctPocCd4,
 				 SEXP s_Linkage,
@@ -223,7 +261,26 @@ SEXP CallCascade(SEXP s_pop,
 	PROTECT(s_HbctNcdPreArtRetention = coerceVector(s_HbctNcdPreArtRetention, INTSXP));
 	PROTECT(s_HbctNcdRetention = coerceVector(s_HbctNcdRetention, INTSXP));
 	PROTECT(s_HbctNcdRetentionAdherence = coerceVector(s_HbctNcdRetentionAdherence, INTSXP));
-	PROTECT(s_HbctFrequency = coerceVector(s_HbctFrequency, INTSXP));
+	PROTECT(s_Hbct_2016 = coerceVector(s_Hbct_2016, INTSXP));
+	PROTECT(s_Hbct_2017 = coerceVector(s_Hbct_2017, INTSXP));
+	PROTECT(s_Hbct_2018 = coerceVector(s_Hbct_2018, INTSXP));
+	PROTECT(s_Hbct_2019 = coerceVector(s_Hbct_2019, INTSXP));
+	PROTECT(s_Hbct_2020 = coerceVector(s_Hbct_2020, INTSXP));
+	PROTECT(s_Hbct_2021 = coerceVector(s_Hbct_2021, INTSXP));
+	PROTECT(s_Hbct_2022 = coerceVector(s_Hbct_2022, INTSXP));
+	PROTECT(s_Hbct_2023 = coerceVector(s_Hbct_2023, INTSXP));
+	PROTECT(s_Hbct_2024 = coerceVector(s_Hbct_2024, INTSXP));
+	PROTECT(s_Hbct_2025 = coerceVector(s_Hbct_2025, INTSXP));
+	PROTECT(s_Hbct_2026 = coerceVector(s_Hbct_2026, INTSXP));
+	PROTECT(s_Hbct_2027 = coerceVector(s_Hbct_2027, INTSXP));
+	PROTECT(s_Hbct_2028 = coerceVector(s_Hbct_2028, INTSXP));
+	PROTECT(s_Hbct_2029 = coerceVector(s_Hbct_2029, INTSXP));
+	PROTECT(s_Hbct_2030 = coerceVector(s_Hbct_2030, INTSXP));
+	PROTECT(s_Hbct_2031 = coerceVector(s_Hbct_2031, INTSXP));
+	PROTECT(s_Hbct_2032 = coerceVector(s_Hbct_2032, INTSXP));
+	PROTECT(s_Hbct_2033 = coerceVector(s_Hbct_2033, INTSXP));
+	PROTECT(s_Hbct_2034 = coerceVector(s_Hbct_2034, INTSXP));
+	PROTECT(s_Hbct_2035 = coerceVector(s_Hbct_2035, INTSXP));
 	PROTECT(s_Vct = coerceVector(s_Vct, INTSXP));
 	PROTECT(s_HbctPocCd4 = coerceVector(s_HbctPocCd4, INTSXP));
 	PROTECT(s_Linkage = coerceVector(s_Linkage, INTSXP));
@@ -243,7 +300,26 @@ SEXP CallCascade(SEXP s_pop,
 	p_HbctNcdPreArtRetention = INTEGER(s_HbctNcdPreArtRetention);
 	p_HbctNcdRetention = INTEGER(s_HbctNcdRetention);
 	p_HbctNcdRetentionAdherence = INTEGER(s_HbctNcdRetentionAdherence);
-	p_HbctFrequency = INTEGER(s_HbctFrequency);
+	p_Hbct_2016 = INTEGER(s_Hbct_2016);
+	p_Hbct_2017 = INTEGER(s_Hbct_2017);
+	p_Hbct_2018 = INTEGER(s_Hbct_2018);
+	p_Hbct_2019 = INTEGER(s_Hbct_2019);
+	p_Hbct_2020 = INTEGER(s_Hbct_2020);
+	p_Hbct_2021 = INTEGER(s_Hbct_2021);
+	p_Hbct_2022 = INTEGER(s_Hbct_2022);
+	p_Hbct_2023 = INTEGER(s_Hbct_2023);
+	p_Hbct_2024 = INTEGER(s_Hbct_2024);
+	p_Hbct_2025 = INTEGER(s_Hbct_2025);
+	p_Hbct_2026 = INTEGER(s_Hbct_2026);
+	p_Hbct_2027 = INTEGER(s_Hbct_2027);
+	p_Hbct_2028 = INTEGER(s_Hbct_2028);
+	p_Hbct_2029 = INTEGER(s_Hbct_2029);
+	p_Hbct_2030 = INTEGER(s_Hbct_2030);
+	p_Hbct_2031 = INTEGER(s_Hbct_2031);
+	p_Hbct_2032 = INTEGER(s_Hbct_2032);
+	p_Hbct_2033 = INTEGER(s_Hbct_2033);
+	p_Hbct_2034 = INTEGER(s_Hbct_2034);
+	p_Hbct_2035 = INTEGER(s_Hbct_2035);
 	p_Vct = INTEGER(s_Vct);
 	p_HbctPocCd4 = INTEGER(s_HbctPocCd4);
 	p_Linkage = INTEGER(s_Linkage);
@@ -257,7 +333,7 @@ SEXP CallCascade(SEXP s_pop,
 	p_Adherence = INTEGER(s_Adherence);
 	p_Calibration = INTEGER(s_Calibration);
 
-	/* THE MODEL */
+		/* THE MODEL */
 	cout << "Hello, Jack - the model is running..." << endl;
 	cout << "Caution: WP19 version. Runs until 2035." << endl;
 	theRng = new Rng(mach_absolute_time());
@@ -358,72 +434,72 @@ SEXP CallCascade(SEXP s_pop,
 	PROTECT(sAidsDeath = allocVector(REALSXP,86));
 	PROTECT(sDeath_2010_Age = allocVector(REALSXP,20));
 	PROTECT(sAidsDeath_2010_Age = allocVector(REALSXP,20));
-	PROTECT(sGuidelines_PopDist_HivNegative = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_500_NeverDiag = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_500_DiagNotInCareNeverCare = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_500_DiagNotInCareEverCare = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_500_InCareNeverArt = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_500_ArtLessSixMonths = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_500_ArtMoreSixMonths = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_500_OffArt = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_350500_NeverDiag = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_350500_DiagNotInCareNeverCare = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_350500_DiagNotInCareEverCare = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_350500_InCareNeverArt = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_350500_ArtLessSixMonths = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_350500_ArtMoreSixMonths = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_350500_OffArt = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_200350_NeverDiag = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_200350_DiagNotInCareNeverCare = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_200350_DiagNotInCareEverCare = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_200350_InCareNeverArt = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_200350_ArtLessSixMonths = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_200350_ArtMoreSixMonths = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_200350_OffArt = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_200_NeverDiag = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_200_DiagNotInCareNeverCare = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_200_DiagNotInCareEverCare = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_200_InCareNeverArt = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_200_ArtLessSixMonths = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_200_ArtMoreSixMonths = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PopDist_200_OffArt = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_HivNegative = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_500_NeverDiag = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_500_DiagNotInCareNeverCare = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_500_DiagNotInCareEverCare = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_500_InCareNeverArt = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_500_ArtLessSixMonths = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_500_ArtMoreSixMonths = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_500_OffArt = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_350500_NeverDiag = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_350500_DiagNotInCareNeverCare = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_350500_DiagNotInCareEverCare = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_350500_InCareNeverArt = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_350500_ArtLessSixMonths = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_350500_ArtMoreSixMonths = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_350500_OffArt = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_200350_NeverDiag = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_200350_DiagNotInCareNeverCare = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_200350_DiagNotInCareEverCare = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_200350_InCareNeverArt = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_200350_ArtLessSixMonths = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_200350_ArtMoreSixMonths = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_200350_OffArt = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_200_NeverDiag = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_200_DiagNotInCareNeverCare = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_200_DiagNotInCareEverCare = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_200_InCareNeverArt = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_200_ArtLessSixMonths = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_200_ArtMoreSixMonths = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Death_200_OffArt = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Art_500 = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Art_350500 = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Art_200350 = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_Art_200 = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_NewInfectionsAdult = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_NewDiagnoses = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_PreArtDropout = allocVector(INTSXP,36));
-	PROTECT(sGuidelines_ArtDropout = allocVector(INTSXP,36));
+	PROTECT(sGuidelines_PopDist_HivNegative = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_500_NeverDiag = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_500_DiagNotInCareNeverCare = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_500_DiagNotInCareEverCare = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_500_InCareNeverArt = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_500_ArtLessSixMonths = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_500_ArtMoreSixMonths = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_500_OffArt = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_350500_NeverDiag = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_350500_DiagNotInCareNeverCare = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_350500_DiagNotInCareEverCare = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_350500_InCareNeverArt = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_350500_ArtLessSixMonths = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_350500_ArtMoreSixMonths = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_350500_OffArt = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_200350_NeverDiag = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_200350_DiagNotInCareNeverCare = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_200350_DiagNotInCareEverCare = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_200350_InCareNeverArt = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_200350_ArtLessSixMonths = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_200350_ArtMoreSixMonths = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_200350_OffArt = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_200_NeverDiag = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_200_DiagNotInCareNeverCare = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_200_DiagNotInCareEverCare = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_200_InCareNeverArt = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_200_ArtLessSixMonths = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_200_ArtMoreSixMonths = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PopDist_200_OffArt = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_HivNegative = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_500_NeverDiag = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_500_DiagNotInCareNeverCare = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_500_DiagNotInCareEverCare = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_500_InCareNeverArt = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_500_ArtLessSixMonths = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_500_ArtMoreSixMonths = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_500_OffArt = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_350500_NeverDiag = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_350500_DiagNotInCareNeverCare = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_350500_DiagNotInCareEverCare = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_350500_InCareNeverArt = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_350500_ArtLessSixMonths = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_350500_ArtMoreSixMonths = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_350500_OffArt = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_200350_NeverDiag = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_200350_DiagNotInCareNeverCare = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_200350_DiagNotInCareEverCare = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_200350_InCareNeverArt = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_200350_ArtLessSixMonths = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_200350_ArtMoreSixMonths = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_200350_OffArt = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_200_NeverDiag = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_200_DiagNotInCareNeverCare = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_200_DiagNotInCareEverCare = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_200_InCareNeverArt = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_200_ArtLessSixMonths = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_200_ArtMoreSixMonths = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Death_200_OffArt = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Art_500 = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Art_350500 = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Art_200350 = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_Art_200 = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_NewInfectionsAdult = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_NewDiagnoses = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_PreArtDropout = allocVector(INTSXP,56));
+	PROTECT(sGuidelines_ArtDropout = allocVector(INTSXP,56));
 	PROTECT(sMid2010 = allocVector(INTSXP,2));
 	PROTECT(sPie_1 = allocVector(INTSXP,3));
 	PROTECT(sPie_2 = allocVector(INTSXP,3));
@@ -674,7 +750,7 @@ SEXP CallCascade(SEXP s_pop,
 		pAidsDeath[i] = theAidsDeath[i];
 	}
 
-	for(size_t i=0;i<36;i++) {
+	for(size_t i=0;i<56;i++) {
 		pGuidelines_PopDist_HivNegative[i] = theGuidelines_PopDist_HivNegative[i];
 		pGuidelines_PopDist_500_NeverDiag[i] = theGuidelines_PopDist_500_NeverDiag[i];
 		pGuidelines_PopDist_500_DiagNotInCareNeverCare[i] = theGuidelines_PopDist_500_DiagNotInCareNeverCare[i];
@@ -1028,7 +1104,7 @@ SEXP CallCascade(SEXP s_pop,
 	SET_VECTOR_ELT(sOUTNAMES,139,mkChar("s959595"));
 	namesgets(sOUT,sOUTNAMES);
 
-	UNPROTECT(161);
+	UNPROTECT(180);
 	return(sOUT);
 	}
 

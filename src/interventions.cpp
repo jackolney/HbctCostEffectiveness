@@ -23,7 +23,26 @@ extern int const * p_HbctNcd;
 extern int const * p_HbctNcdPreArtRetention;
 extern int const * p_HbctNcdRetention;
 extern int const * p_HbctNcdRetentionAdherence;
-extern int const * p_HbctFrequency;
+extern int const * p_Hbct_2016;
+extern int const * p_Hbct_2017;
+extern int const * p_Hbct_2018;
+extern int const * p_Hbct_2019;
+extern int const * p_Hbct_2020;
+extern int const * p_Hbct_2021;
+extern int const * p_Hbct_2022;
+extern int const * p_Hbct_2023;
+extern int const * p_Hbct_2024;
+extern int const * p_Hbct_2025;
+extern int const * p_Hbct_2026;
+extern int const * p_Hbct_2027;
+extern int const * p_Hbct_2028;
+extern int const * p_Hbct_2029;
+extern int const * p_Hbct_2030;
+extern int const * p_Hbct_2031;
+extern int const * p_Hbct_2032;
+extern int const * p_Hbct_2033;
+extern int const * p_Hbct_2034;
+extern int const * p_Hbct_2035;
 extern int const * p_Vct;
 extern int const * p_HbctPocCd4;
 extern int const * p_Linkage;
@@ -42,7 +61,7 @@ extern int const * p_Calibration;
 
 void SeedInterventions(person * const thePerson)
 {
-	if(*p_NaiveHbct || *p_HbctNcd || *p_HbctNcdPreArtRetention || *p_HbctNcdRetention || *p_HbctNcdRetentionAdherence || *p_HbctFrequency || *p_Vct || *p_HbctPocCd4 || *p_Linkage || *p_PreOutreach || *p_ImprovedCare || *p_PocCd4 || *p_VctPocCd4 || *p_ArtOutreach || *p_ImmediateArt || *p_UniversalTestAndTreat || *p_Adherence || *p_Calibration) {
+	if(*p_NaiveHbct || *p_HbctNcd || *p_HbctNcdPreArtRetention || *p_HbctNcdRetention || *p_HbctNcdRetentionAdherence || *p_Hbct_2016 || *p_Hbct_2017 || *p_Hbct_2018 || *p_Hbct_2019 || *p_Hbct_2020 || *p_Hbct_2021 || *p_Hbct_2022 || *p_Hbct_2023 || *p_Hbct_2024 || *p_Hbct_2025 || *p_Hbct_2026 || *p_Hbct_2027 || *p_Hbct_2028 || *p_Hbct_2029 || *p_Hbct_2030 || *p_Hbct_2031 || *p_Hbct_2032 || *p_Hbct_2033 || *p_Hbct_2034 || *p_Hbct_2035 || *p_Vct || *p_HbctPocCd4 || *p_Linkage || *p_PreOutreach || *p_ImprovedCare || *p_PocCd4 || *p_VctPocCd4 || *p_ArtOutreach || *p_ImmediateArt || *p_UniversalTestAndTreat || *p_Adherence || *p_Calibration) {
 		if(thePerson->GetBirthDay() < 16801.5)
 			new Interventions(thePerson,16801.5);
 		else
@@ -142,95 +161,127 @@ void Interventions::Execute()
 
 	/////////////////////
 	/* HbctFrequency */
+	/* Simulations run from 2016 all the way through to 2035 */
 
-	if(*p_HbctFrequency) {
-		// Every year
-		if(*p_HbctFrequency == 1)
-			for(size_t i=0;i<20;i++)
-				if(GetTime() <= 16801.5 + (i * 365.25))
-					new SeedHct(pPerson,16801.5 + (i * 365.25),false,true,true,true);
 
-		// Every 2 years
-		if(*p_HbctFrequency == 2)
-			for(size_t i=0;i<10;i++)
-				if(GetTime() <= 16801.5 + (i * 730.5))
-					new SeedHct(pPerson,16801.5 + (i * 730.5),false,true,true,true);
+	// 2016
+	if(*p_Hbct_2016 == 1) {
+		if(GetTime() <= 16801.5)
+			new SeedHct(pPerson,16801.5,false,false,false,false);
+	}
 
-		// Every 3 years
-		if(*p_HbctFrequency == 3)
-			for(size_t i=0;i<7;i++)
-				if(GetTime() <= 16801.5 + (i * 1095.75))
-					new SeedHct(pPerson,16801.5 + (i * 1095.75),false,true,true,true);
+	// 2017
+	if(*p_Hbct_2017 == 1) {
+		if(GetTime() <= 16801.5 + (1 * 365.25))
+			new SeedHct(pPerson,16801.5 + (1 * 365.25),false,false,false,false);
+	}
+	
+	// 2018
+	if(*p_Hbct_2018 == 1) {
+		if(GetTime() <= 16801.5 + (2 * 365.25))
+			new SeedHct(pPerson,16801.5 + (2 * 365.25),false,false,false,false);
+	}
+	
+	// 2019
+	if(*p_Hbct_2019 == 1) {
+		if(GetTime() <= 16801.5 + (3 * 365.25))
+			new SeedHct(pPerson,16801.5 + (3 * 365.25),false,false,false,false);
+	}
 
-		// Every 4 years
-		if(*p_HbctFrequency == 4)
-			for(size_t i=0;i<5;i++)
-				if(GetTime() <= 16801.5 + (i * 1461))
-					new SeedHct(pPerson,16801.5 + (i * 1461),false,true,true,true);
+	// 2020
+	if(*p_Hbct_2020 == 1) {
+		if(GetTime() <= 16801.5 + (4 * 365.25))
+			new SeedHct(pPerson,16801.5 + (4 * 365.25),false,false,false,false);
+	}
 
-		// Every 5 years
-		if(*p_HbctFrequency == 5)
-			for(size_t i=0;i<4;i++)
-				if(GetTime() <= 16801.5 + (i * 1826.25))
-					new SeedHct(pPerson,16801.5 + (i * 1826.25),false,true,true,true);
+	// 2021
+	if(*p_Hbct_2021 == 1) {
+		if(GetTime() <= 16801.5 + (5 * 365.25))
+			new SeedHct(pPerson,16801.5 + (5 * 365.25),false,false,false,false);
+	}
 
-		// Every 6 years
-		if(*p_HbctFrequency == 6)
-			for(size_t i=0;i<4;i++)
-				if(GetTime() <= 16801.5 + (i * 2191.5))
-					new SeedHct(pPerson,16801.5 + (i * 2191.5),false,true,true,true);
-
-		// Every 7 years
-		if(*p_HbctFrequency == 7)
-			for(size_t i=0;i<3;i++)
-				if(GetTime() <= 16801.5 + (i * 2556.75))
-					new SeedHct(pPerson,16801.5 + (i * 2556.75),false,true,true,true);
-
-		// Every 8 years
-		if(*p_HbctFrequency == 8)
-			for(size_t i=0;i<3;i++)
-				if(GetTime() <= 16801.5 + (i * 2922))
-					new SeedHct(pPerson,16801.5 + (i * 2922),false,true,true,true);
-
-		// Every 10 years
-		if(*p_HbctFrequency == 10)
-			for(size_t i=0;i<2;i++)
-				if(GetTime() <= 16801.5 + (i * 3652.5))
-					new SeedHct(pPerson,16801.5 + (i * 3652.5),false,true,true,true);
-
-		// 2010
-		if(*p_HbctFrequency == 11) {
-			const double HbctTime[1] = {0};
-			for(size_t i=0;i<1;i++)
-				if(GetTime() <= 16801.5 + HbctTime[i])
-					new SeedHct(pPerson,16801.5 + HbctTime[i],false,true,true,true);
-		}
-
-		// 2010, 2011
-		if(*p_HbctFrequency == 12) {
-			const double HbctTime[2] = {0,365.25};
-			for(size_t i=0;i<2;i++)
-				if(GetTime() <= 16801.5 + HbctTime[i])
-					new SeedHct(pPerson,16801.5 + HbctTime[i],false,true,true,true);
-		}
-
-		// 2010, 2011, 2014
-		if(*p_HbctFrequency == 13) {
-			const double HbctTime[3] = {0,365.25,1461};
-			for(size_t i=0;i<3;i++)
-				if(GetTime() <= 16801.5 + HbctTime[i])
-					new SeedHct(pPerson,16801.5 + HbctTime[i],false,true,true,true);
-		}
-
-		// 2010, 2011, 2014, 2020
-		if(*p_HbctFrequency == 14) {
-			const double HbctTime[4] = {0,365.25,1461,3652.5};
-			for(size_t i=0;i<4;i++)
-				if(GetTime() <= 16801.5 + HbctTime[i])
-					new SeedHct(pPerson,16801.5 + HbctTime[i],false,true,true,true);
-		}
-
-		pPerson->SetHctNcdCostTrigger(true);
+	// 2022
+	if(*p_Hbct_2022 == 1) {
+		if(GetTime() <= 16801.5 + (6 * 365.25))
+			new SeedHct(pPerson,16801.5 + (6 * 365.25),false,false,false,false);
+	}
+	
+	// 2023
+	if(*p_Hbct_2023 == 1) {
+		if(GetTime() <= 16801.5 + (7 * 365.25))
+			new SeedHct(pPerson,16801.5 + (7 * 365.25),false,false,false,false);
+	}
+	
+	// 2024
+	if(*p_Hbct_2024 == 1) {
+		if(GetTime() <= 16801.5 + (8 * 365.25))
+			new SeedHct(pPerson,16801.5 + (8 * 365.25),false,false,false,false);
+	}
+	
+	// 2025
+	if(*p_Hbct_2025 == 1) {
+		if(GetTime() <= 16801.5 + (9 * 365.25))
+			new SeedHct(pPerson,16801.5 + (9 * 365.25),false,false,false,false);
+	}
+	
+	// 2026
+	if(*p_Hbct_2026 == 1) {
+		if(GetTime() <= 16801.5 + (10 * 365.25))
+			new SeedHct(pPerson,16801.5 + (10 * 365.25),false,false,false,false);
+	}
+	
+	// 2027
+	if(*p_Hbct_2027 == 1) {
+		if(GetTime() <= 16801.5 + (11 * 365.25))
+			new SeedHct(pPerson,16801.5 + (11 * 365.25),false,false,false,false);
+	}
+	
+	// 2028
+	if(*p_Hbct_2028 == 1) {
+		if(GetTime() <= 16801.5 + (12 * 365.25))
+			new SeedHct(pPerson,16801.5 + (12 * 365.25),false,false,false,false);
+	}
+	
+	// 2029
+	if(*p_Hbct_2029 == 1) {
+		if(GetTime() <= 16801.5 + (13 * 365.25))
+			new SeedHct(pPerson,16801.5 + (13 * 365.25),false,false,false,false);
+	}
+	
+	// 2030
+	if(*p_Hbct_2030 == 1) {
+		if(GetTime() <= 16801.5 + (14 * 365.25))
+			new SeedHct(pPerson,16801.5 + (14 * 365.25),false,false,false,false);
+	}
+	
+	// 2031
+	if(*p_Hbct_2031 == 1) {
+		if(GetTime() <= 16801.5 + (15 * 365.25))
+			new SeedHct(pPerson,16801.5 + (15 * 365.25),false,false,false,false);
+	}
+	
+	// 2032
+	if(*p_Hbct_2032 == 1) {
+		if(GetTime() <= 16801.5 + (16 * 365.25))
+			new SeedHct(pPerson,16801.5 + (16 * 365.25),false,false,false,false);
+	}
+	
+	// 2033
+	if(*p_Hbct_2033 == 1) {
+		if(GetTime() <= 16801.5 + (17 * 365.25))
+			new SeedHct(pPerson,16801.5 + (17 * 365.25),false,false,false,false);
+	}
+	
+	// 2034
+	if(*p_Hbct_2034 == 1) {
+		if(GetTime() <= 16801.5 + (18 * 365.25))
+			new SeedHct(pPerson,16801.5 + (18 * 365.25),false,false,false,false);
+	}
+	
+	// 2035
+	if(*p_Hbct_2035 == 1) {
+		if(GetTime() <= 16801.5 + (19 * 365.25))
+			new SeedHct(pPerson,16801.5 + (19 * 365.25),false,false,false,false);
 	}
 
 	/////////////////////
