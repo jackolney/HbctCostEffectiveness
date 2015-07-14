@@ -97,7 +97,7 @@ bool Output::CheckValid()
 
 void Output::Execute()
 {
-	if(GetTime() >= 16801.5 && GetTime() < 31411.5) {
+	if(GetTime() >= 16801.5 && GetTime() < 31412.5) {
 		WriteDaly(pPerson,index);
 		WriteCost(pPerson,GetTime());
 	}

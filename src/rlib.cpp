@@ -428,9 +428,9 @@ SEXP CallCascade(SEXP s_pop,
 	PROTECT(sPie_1 = allocVector(INTSXP,3));
 	PROTECT(sPie_2 = allocVector(INTSXP,3));
 	PROTECT(sPie_3 = allocVector(INTSXP,6));
-	PROTECT(sDALY_OffArt = allocVector(REALSXP,20));
-	PROTECT(sDALY_OnArt = allocVector(REALSXP,20));
-	PROTECT(sDALY_LYL = allocVector(REALSXP,20));
+	PROTECT(sDALY_OffArt = allocVector(REALSXP,40));
+	PROTECT(sDALY_OnArt = allocVector(REALSXP,40));
+	PROTECT(sDALY_LYL = allocVector(REALSXP,40));
 	PROTECT(s909090 = allocVector(REALSXP,4));
 	PROTECT(s959595 = allocVector(REALSXP,4));
 
@@ -576,7 +576,7 @@ SEXP CallCascade(SEXP s_pop,
 	int * pPie_2 = INTEGER(sPie_2);
 	int * pPie_3 = INTEGER(sPie_3);
 
-	for(size_t i=0;i<66;i++) {
+	for(size_t i=0;i<86;i++) {
 		if(i<2)
 			pMid2010[i] = mid2010[i];
 		if(i<2)
@@ -632,6 +632,8 @@ SEXP CallCascade(SEXP s_pop,
 			pHIV_AgeSex_2007[i] = theHIV_AgeSex_2007[i];
 			pDeath_2010_Age[i] = theDeath_2010_Age[i];
 			pAidsDeath_2010_Age[i] = theAidsDeath_2010_Age[i];
+		}
+		if(i<40) {
 			pDALY[i] = theDALY[i];
 			pCOST[i] = theCOST[i];
 			pPreArtCOST[i] = thePreArtCOST[i];

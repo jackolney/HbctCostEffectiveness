@@ -35,3 +35,14 @@ Baseline$s909090[4] / Baseline$s909090[3]
 Baseline$s959595[2] / Baseline$s959595[1]
 Baseline$s959595[3] / Baseline$s959595[2]
 Baseline$s959595[4] / Baseline$s959595[3]
+
+names(Baseline)
+
+plot(Baseline$sDALY,type='b',lwd=2)
+plot(Baseline$sCOST,type='b',lwd=2)
+
+Baseline$sDALY
+length(Baseline$sDALY)
+
+Baseline$sCOST
+length(Baseline$sCOST)
