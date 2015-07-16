@@ -35,7 +35,7 @@ logging.info("Starting Python script.")
 sizeAdjustment = 15
 seqList = ["Seq1","Seq2","Seq3","Seq4"]
 runList = ["run1","run2","run3","run4","run5","run6","run7","run8","run9","run10"]
-outputFolderList = ["Baseline","NaiveHbct","Hbct_2016", "Hbct_2017", "Hbct_2018", "Hbct_2019", "Hbct_2020", "Hbct_2021", "Hbct_2022", "Hbct_2023", "Hbct_2024", "Hbct_2025", "Hbct_2026", "Hbct_2027", "Hbct_2028", "Hbct_2029", "Hbct_2030", "Hbct_2031", "Hbct_2032", "Hbct_2033", "Hbct_2034", "Hbct_2035"]
+outputFolderList = ["Baseline", "NaiveHbct", "Hbct_2016", "Hbct_2017", "Hbct_2018", "Hbct_2019", "Hbct_2020", "Hbct_2021", "Hbct_2022", "Hbct_2023", "Hbct_2024", "Hbct_2025", "Hbct_2026", "Hbct_2027", "Hbct_2028", "Hbct_2029", "Hbct_2030", "Hbct_2031", "Hbct_2032", "Hbct_2033", "Hbct_2034", "Hbct_2035"]
 
 ##############
 # WHERE AM I #
@@ -46,9 +46,9 @@ theSequence = 0
 
 for j in range(0,len(seqList)):
     for i in range(0,len(runList)):
-            for x in range(0,len(outputFolderList)):
-                if os.path.exists(r"\\fi--san02\homes\jjo11\cascade\%s\%s\%s\output\%s\currentWorkspace.RData" % (path, seqList[j], runList[i], outputFolderList[x])):
-                    theSequence = j + 1
+        for x in range(0,len(outputFolderList)):
+            if os.path.exists(r"\\fi--san02\homes\jjo11\cascade\%s\%s\%s\output\%s\currentWorkspace.RData" % (path, seqList[j], runList[i], outputFolderList[x])):
+                theSequence = j + 1
 
 logging.info("The Sequence = %s" % theSequence)
 
