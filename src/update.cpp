@@ -36,10 +36,10 @@ void SeedTreatmentUpdate(person * const thePerson, const double theTime)
 	else
 	    new SeedTreatmentGuidelinesUpdate(thePerson,14975.25);
 	 
-	// if(theTime > 16436.25)
-	//     new SeedTreatmentGuidelinesUpdate(thePerson,theTime);
-	// else
-	//     new SeedTreatmentGuidelinesUpdate(thePerson,16436.25);
+	if(theTime > 16436.25)
+	    new SeedTreatmentGuidelinesUpdate(thePerson,theTime);
+	else
+	    new SeedTreatmentGuidelinesUpdate(thePerson,16436.25);
 }
 
 ////////////////////

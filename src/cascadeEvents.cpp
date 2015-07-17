@@ -76,8 +76,8 @@ void SeedTreatmentGuidelinesUpdate::Execute()
 {
 	if(GetTime() >= 14975.25)
 		UpdateTreatmentGuidelines(pPerson,2,3);
-	// if(GetTime() >= 16436.25)
-	// 	UpdateTreatmentGuidelines(pPerson,3,3);
+	if(GetTime() >= 16436.25)
+		UpdateTreatmentGuidelines(pPerson,3,3);
 }
 
 /////////////////////
