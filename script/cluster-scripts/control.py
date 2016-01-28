@@ -33,9 +33,9 @@ logging.info("Starting Python script.")
 ###########
 
 sizeAdjustment = 10
-seqList = ["Seq1","Seq2","Seq3","Seq4","Seq5","Seq6","Seq7","Seq8","Seq9","Seq10"]
+seqList = ["Seq1","Seq2","Seq3","Seq4","Seq5","Seq6","Seq7","Seq8","Seq9","Seq10","Seq11","Seq12","Seq13","Seq14","Seq15","Seq16","Seq17","Seq18","Seq19","Seq20"]
 runList = ["run1","run2","run3","run4","run5"]
-outputFolderList = ["Baseline","Hbct_2016", "Hbct_2017", "Hbct_2018", "Hbct_2019", "Hbct_2020", "Hbct_2021", "Hbct_2022", "Hbct_2023", "Hbct_2024", "Hbct_2025", "Hbct_2026", "Hbct_2027", "Hbct_2028", "Hbct_2029", "Hbct_2030", "Hbct_2031", "Hbct_2032", "Hbct_2033", "Hbct_2034", "Hbct_2035"]
+outputFolderList = ["Baseline","Hbct_2016","Hbct_2017","Hbct_2018","Hbct_2019","Hbct_2020","Hbct_2021","Hbct_2022","Hbct_2023","Hbct_2024","Hbct_2025","Hbct_2026","Hbct_2027","Hbct_2028","Hbct_2029","Hbct_2030","Hbct_2031","Hbct_2032","Hbct_2033","Hbct_2034","Hbct_2035"]
 
 ###################
 # ANALYSIS SCRIPT #
@@ -44,20 +44,23 @@ outputFolderList = ["Baseline","Hbct_2016", "Hbct_2017", "Hbct_2018", "Hbct_2019
 if not os.path.exists(r"\\fi--san02\homes\jjo11\cascade\%s\AnalysisScript.R" % path):
     file = open(r"\\fi--san02\homes\jjo11\cascade\%s\AnalysisScript.R" % path,"w")
     file.write("# Notification Stuff\n")
-    file.write("LoadNotification <- function() {\n")
+    file.write("SendNotification <- function(ThePath, TheSequence) {\n")
     file.write("\t" + "# IFTTT Notification Setup\n")
-    file.write("\t" + "list.of.packages <- c('bitops','httr','RCurl')\n")
+    file.write("\t" + "list.of.packages <- c('httr','bitops','RCurl','digest','devtools','jsonlite','data.table','ggplot2','labeling','slackr')\n")
     file.write("\t" + r"new.packages <- list.of.packages[!(list.of.packages %in% installed.packages(lib.loc='\\\\fi--san02/homes/jjo11/library/')[,'Package'])]" + "\n")
     file.write("\t" + r"if(length(new.packages)) install.packages(new.packages,repos='http://cran.ma.imperial.ac.uk',lib='\\\\fi--san02/homes/jjo11/library/')" + "\n")
+    file.write("\t" + r"require(httr,lib.loc='\\\\fi--san02/homes/jjo11/library/')" + "\n")
     file.write("\t" + r"require(bitops,lib.loc='\\\\fi--san02/homes/jjo11/library/')" + "\n")
     file.write("\t" + r"require(RCurl,lib.loc='\\\\fi--san02/homes/jjo11/library/')" + "\n")
-    file.write("\t" + r"require(httr,lib.loc='\\\\fi--san02/homes/jjo11/library/')" + "\n")
-    file.write("\t" + "myEvent <- 'cluster'\n")
-    file.write("\t" + "myKey <- 'yrE109QSpk7g52OgdOzf0'\n")
-    file.write("\t" + "makerUrl <<- paste('https://maker.ifttt.com/trigger', myEvent, 'with/key', myKey, sep='/')\n")
-    file.write("}\n\n")
-    file.write("SendNotification <- function(ThePath, TheSequence) {\n")
-    file.write("\ttry(httr::POST(makerUrl, body=list(value1=ThePath, value2=paste('sequence',TheSequence,'finished.'))),silent=TRUE)\n")
+    file.write("\t" + r"require(digest,lib.loc='\\\\fi--san02/homes/jjo11/library/')" + "\n")
+    file.write("\t" + r"require(devtools,lib.loc='\\\\fi--san02/homes/jjo11/library/')" + "\n")
+    file.write("\t" + r"require(jsonlite,lib.loc='\\\\fi--san02/homes/jjo11/library/')" + "\n")
+    file.write("\t" + r"require(data.table,lib.loc='\\\\fi--san02/homes/jjo11/library/')" + "\n")
+    file.write("\t" + r"require(ggplot2,lib.loc='\\\\fi--san02/homes/jjo11/library/')" + "\n")
+    file.write("\t" + r"require(labeling,lib.loc='\\\\fi--san02/homes/jjo11/library/')" + "\n")
+    file.write("\t" + r"require(slackr,lib.loc='\\\\fi--san02/homes/jjo11/library/')" + "\n")
+    file.write("\t" + r"slackrSetup(channel = '#slackr', username = 'MRC Cluster', api_token = 'xoxp-15444906276-15444906292-17727215943-e72c66b33b')" + "\n")
+    file.write("\tslackr(paste('Sequence',TheSequence,'finished.',ThePath))\n")
     file.write("}\n\n")
     file.write("# Check for existence of all files\n")
     file.write("AllFilesExist <- function(TheRun, TheIntervention) {\n")
@@ -138,21 +141,13 @@ if not os.path.exists(r"\\fi--san02\homes\jjo11\cascade\%s\AnalysisScript.R" % p
     file.write("\tSeqResultPath <- paste(ThePath,'SequenceResults.csv',sep='')\n\n")
     file.write("\tif(file.exists(SeqResultPath)) {\n")
     file.write("\t\tArgsForModel <- read.csv(SeqResultPath)\n")
-    file.write("\t\tj <- 1\n")
-    file.write("\t\twhile(ArgsForModel$Args[i] == 0) {\n")
-    file.write("\t\t\ti <- 1\n")
-    file.write("\t\t\tj <- j + 1\n")
-    file.write("\t\t\twhile(sort(totalDALYs,TRUE)[j] != totalDALYs[i,]) {\n")
-    file.write("\t\t\t\ti <- i + 1\n")
-    file.write("\t\t\t}\n")
-    file.write("\t\t}\n")
-    file.write("\t\tArgsForModel$Args[i] = 0\n")
+    file.write("\t\tArgsForModel$Args[i] = 1\n")
     file.write("\t\twrite.csv(ArgsForModel,file=SeqResultPath,row.names=FALSE)\n")
     file.write("\t} else {\n")
     file.write("\t\tYears <- seq(2016,2035,1)\n")
-    file.write("\t\tArgs <- c(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)\n")
+    file.write("\t\tArgs <- c(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)\n")
     file.write("\t\tArgsForModel <- data.frame(Years,Args)\n")
-    file.write("\t\tArgsForModel$Args[i] = 0\n")
+    file.write("\t\tArgsForModel$Args[i] = 1\n")
     file.write("\t\twrite.csv(ArgsForModel,file=SeqResultPath,row.names=FALSE)\n")
     file.write("\t}\n\n")
     file.write("\twrite.csv(ArgsForModel,file='SequenceResults.csv',row.names=FALSE)\n")
@@ -238,26 +233,26 @@ if theSequence == 0:
         cHbctNcdPreArtRetention     = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         cHbctNcdRetention           = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         cHbctNcdRetentionAdherence  = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        cHbct_2016                  = [1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        cHbct_2017                  = [1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        cHbct_2018                  = [1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        cHbct_2019                  = [1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        cHbct_2020                  = [1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        cHbct_2021                  = [1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        cHbct_2022                  = [1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        cHbct_2023                  = [1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1]
-        cHbct_2024                  = [1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1]
-        cHbct_2025                  = [1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1]
-        cHbct_2026                  = [1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1]
-        cHbct_2027                  = [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1]
-        cHbct_2028                  = [1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1]
-        cHbct_2029                  = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1]
-        cHbct_2030                  = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1]
-        cHbct_2031                  = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1]
-        cHbct_2032                  = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1]
-        cHbct_2033                  = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1]
-        cHbct_2034                  = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1]
-        cHbct_2035                  = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0]
+        cHbct_2016                  = [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+        cHbct_2017                  = [0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        cHbct_2018                  = [0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        cHbct_2019                  = [0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        cHbct_2020                  = [0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        cHbct_2021                  = [0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        cHbct_2022                  = [0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        cHbct_2023                  = [0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0]
+        cHbct_2024                  = [0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0]
+        cHbct_2025                  = [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0]
+        cHbct_2026                  = [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0]
+        cHbct_2027                  = [0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0]
+        cHbct_2028                  = [0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0]
+        cHbct_2029                  = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0]
+        cHbct_2030                  = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0]
+        cHbct_2031                  = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0]
+        cHbct_2032                  = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0]
+        cHbct_2033                  = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0]
+        cHbct_2034                  = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0]
+        cHbct_2035                  = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]
         cVct                        = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         cHbctPocCd4                 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         cLinkage                    = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -342,7 +337,7 @@ if theSequence == 0:
                 file.write(r"source('\\\\fi--san02/homes/jjo11/cascade/%s/AnalysisScript.R')" % altPath + "\n\n")
                 file.write(r"setwd('\\\\fi--san02/homes/jjo11/cascade/%s/%s/')" % (altPath, seqList[theSequence]) + "\n\n")
                 file.write("TheRun <- c('run1','run2','run3','run4','run5')\n")
-                file.write("TheIntervention <- c('Baseline','Hbct_2016', 'Hbct_2017', 'Hbct_2018', 'Hbct_2019', 'Hbct_2020', 'Hbct_2021', 'Hbct_2022', 'Hbct_2023', 'Hbct_2024', 'Hbct_2025', 'Hbct_2026', 'Hbct_2027', 'Hbct_2028', 'Hbct_2029', 'Hbct_2030', 'Hbct_2031', 'Hbct_2032', 'Hbct_2033', 'Hbct_2034', 'Hbct_2035')\n\n")
+                file.write("TheIntervention <- c('Baseline','Hbct_2016','Hbct_2017','Hbct_2018','Hbct_2019','Hbct_2020','Hbct_2021','Hbct_2022','Hbct_2023','Hbct_2024','Hbct_2025','Hbct_2026','Hbct_2027','Hbct_2028','Hbct_2029','Hbct_2030','Hbct_2031','Hbct_2032','Hbct_2033','Hbct_2034','Hbct_2035')\n\n")
                 file.write("AllFilesExist(TheRun,TheIntervention)\n\n")
                 file.write("LockFileCheck()\n\n")
                 file.write(r"AnalyseResults(%s,'\\\\fi--san02/homes/jjo11/cascade/%s/',TheRun,TheIntervention)" % (sizeAdjustment, altPath) + "\n\n")
@@ -350,8 +345,7 @@ if theSequence == 0:
                 file.write("JobLocation <- scan(what='character',allowEscapes=FALSE)\n")
                 file.write(r"'\\fi--san02\homes\jjo11\cascade\%s\control.bat'" % path + "\n\n")
                 file.write("system(paste('job submit /scheduler:fi--didemrchnb.dide.local /jobtemplate:GeneralNodes /numcores:1 /rerunnable:true /jobname:Sequence-%s', JobLocation))" % (theSequence + 2) + "\n\n")
-                file.write("# LoadNotification()\n\n")
-                file.write("# SendNotification('%s',%s)\n\n" % (altPath, theSequence + 2))
+                file.write("SendNotification('%s',%s)\n\n" % (altPath, theSequence + 1))
                 file.write("print('Done.')")
                 file.close()
         logging.info("Finished building simulation control scripts in R. (%s)" % runList[i])
@@ -380,7 +374,7 @@ if theSequence == 0:
         for x in range(0,len(outputFolderList)):
             if not os.path.exists(r"\\fi--san02\homes\jjo11\cascade\%s\output\%s\currentWorkspace.RData" % (runPath[i], outputFolderList[x])):
                 logging.info("Launching %s, %s" % (runList[i],outputFolderList[x]))
-                os.system(r"job submit /scheduler:fi--didemrchnb.dide.local /jobtemplate:16Core /numcores:6 /rerunnable:true /jobname:%s-%s \\fi--san02\homes\jjo11\cascade\%s\sim\sim_%s.bat" % (runList[i], outputFolderList[x], runPath[i], outputFolderList[x]))
+                os.system(r"job submit /scheduler:fi--didemrchnb.dide.local /jobtemplate:GeneralNodes /numcores:6 /rerunnable:true /jobname:%s-%s \\fi--san02\homes\jjo11\cascade\%s\sim\sim_%s.bat" % (runList[i], outputFolderList[x], runPath[i], outputFolderList[x]))
 else:
     #############################
     # OPEN SEQUENCE RESULTS CSV #
@@ -436,86 +430,86 @@ else:
         cHbctNcdPreArtRetention     = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         cHbctNcdRetention           = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         cHbctNcdRetentionAdherence  = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        if int(ArgsList[1][1]) is 0:
+        if int(ArgsList[1][1]) is 1:
+            cHbct_2016 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+        else:
             cHbct_2016 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        if int(ArgsList[2][1]) is 1:
+            cHbct_2017 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2016 = [1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        if int(ArgsList[2][1]) is 0:
-            cHbct_2017 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            cHbct_2017 = [0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        if int(ArgsList[3][1]) is 1:
+            cHbct_2018 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2017 = [1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        if int(ArgsList[3][1]) is 0:
-            cHbct_2018 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            cHbct_2018 = [0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        if int(ArgsList[4][1]) is 1:
+            cHbct_2019 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2018 = [1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        if int(ArgsList[4][1]) is 0:
-            cHbct_2019 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            cHbct_2019 = [0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        if int(ArgsList[5][1]) is 1:
+            cHbct_2020 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2019 = [1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        if int(ArgsList[5][1]) is 0:
-            cHbct_2020 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            cHbct_2020 = [0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        if int(ArgsList[6][1]) is 1:
+            cHbct_2021 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2020 = [1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        if int(ArgsList[6][1]) is 0:
-            cHbct_2021 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            cHbct_2021 = [0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        if int(ArgsList[7][1]) is 1:
+            cHbct_2022 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2021 = [1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        if int(ArgsList[7][1]) is 0:
-            cHbct_2022 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            cHbct_2022 = [0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        if int(ArgsList[8][1]) is 1:
+            cHbct_2023 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2022 = [1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        if int(ArgsList[8][1]) is 0:
-            cHbct_2023 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            cHbct_2023 = [0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0]
+        if int(ArgsList[9][1]) is 1:
+            cHbct_2024 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2023 = [1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1]
-        if int(ArgsList[9][1]) is 0:
-            cHbct_2024 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            cHbct_2024 = [0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0]
+        if int(ArgsList[10][1]) is 1:
+            cHbct_2025 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2024 = [1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1]
-        if int(ArgsList[10][1]) is 0:
-            cHbct_2025 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            cHbct_2025 = [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0]
+        if int(ArgsList[11][1]) is 1:
+            cHbct_2026 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2025 = [1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1]
-        if int(ArgsList[11][1]) is 0:
-            cHbct_2026 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            cHbct_2026 = [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0]
+        if int(ArgsList[12][1]) is 1:
+            cHbct_2027 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2026 = [1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1]
-        if int(ArgsList[12][1]) is 0:
-            cHbct_2027 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            cHbct_2027 = [0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0]
+        if int(ArgsList[13][1]) is 1:
+            cHbct_2028 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2027 = [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1]
-        if int(ArgsList[13][1]) is 0:
-            cHbct_2028 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            cHbct_2028 = [0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0]
+        if int(ArgsList[14][1]) is 1:
+            cHbct_2029 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2028 = [1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1]
-        if int(ArgsList[14][1]) is 0:
-            cHbct_2029 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            cHbct_2029 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0]
+        if int(ArgsList[15][1]) is 1:
+            cHbct_2030 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2029 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1]
-        if int(ArgsList[15][1]) is 0:
-            cHbct_2030 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            cHbct_2030 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0]
+        if int(ArgsList[16][1]) is 1:
+            cHbct_2031 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2030 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1]
-        if int(ArgsList[16][1]) is 0:
-            cHbct_2031 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            cHbct_2031 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0]
+        if int(ArgsList[17][1]) is 1:
+            cHbct_2032 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2031 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1]
-        if int(ArgsList[17][1]) is 0:
-            cHbct_2032 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            cHbct_2032 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0]
+        if int(ArgsList[18][1]) is 1:
+            cHbct_2033 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2032 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1]
-        if int(ArgsList[18][1]) is 0:
-            cHbct_2033 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            cHbct_2033 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0]
+        if int(ArgsList[19][1]) is 1:
+            cHbct_2034 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2033 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1]
-        if int(ArgsList[19][1]) is 0:
-            cHbct_2034 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            cHbct_2034 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0]
+        if int(ArgsList[20][1]) is 1:
+            cHbct_2035 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         else:
-            cHbct_2034 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1]
-        if int(ArgsList[20][1]) is 0:
-            cHbct_2035 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        else:
-            cHbct_2035 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0]
+            cHbct_2035 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]
         cVct                        = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         cHbctPocCd4                 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         cLinkage                    = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -600,7 +594,7 @@ else:
                 file.write(r"source('\\\\fi--san02/homes/jjo11/cascade/%s/AnalysisScript.R')" % altPath + "\n\n")
                 file.write(r"setwd('\\\\fi--san02/homes/jjo11/cascade/%s/%s/')" % (altPath, seqList[theSequence]) + "\n\n")
                 file.write("TheRun <- c('run1','run2','run3','run4','run5')\n")
-                file.write("TheIntervention <- c('Baseline','Hbct_2016', 'Hbct_2017', 'Hbct_2018', 'Hbct_2019', 'Hbct_2020', 'Hbct_2021', 'Hbct_2022', 'Hbct_2023', 'Hbct_2024', 'Hbct_2025', 'Hbct_2026', 'Hbct_2027', 'Hbct_2028', 'Hbct_2029', 'Hbct_2030', 'Hbct_2031', 'Hbct_2032', 'Hbct_2033', 'Hbct_2034', 'Hbct_2035')\n\n")
+                file.write("TheIntervention <- c('Baseline','Hbct_2016','Hbct_2017','Hbct_2018','Hbct_2019','Hbct_2020','Hbct_2021','Hbct_2022','Hbct_2023','Hbct_2024','Hbct_2025','Hbct_2026','Hbct_2027','Hbct_2028','Hbct_2029','Hbct_2030','Hbct_2031','Hbct_2032','Hbct_2033','Hbct_2034','Hbct_2035')\n\n")
                 file.write("AllFilesExist(TheRun,TheIntervention)\n\n")
                 file.write("LockFileCheck()\n\n")
                 file.write(r"AnalyseResults(%s,'\\\\fi--san02/homes/jjo11/cascade/%s/',TheRun,TheIntervention)" % (sizeAdjustment, altPath) + "\n\n")
@@ -608,8 +602,7 @@ else:
                 file.write("JobLocation <- scan(what='character',allowEscapes=FALSE)\n")
                 file.write(r"'\\fi--san02\homes\jjo11\cascade\%s\control.bat'" % path + "\n\n")
                 file.write("system(paste('job submit /scheduler:fi--didemrchnb.dide.local /jobtemplate:GeneralNodes /numcores:1 /rerunnable:true /jobname:Sequence-%s', JobLocation))" % (theSequence + 2) + "\n\n")
-                file.write("# LoadNotification()\n\n")
-                file.write("# SendNotification('%s',%s)\n\n" % (altPath, theSequence + 2))
+                file.write("SendNotification('%s',%s)\n\n" % (altPath, theSequence + 1))
                 file.write("print('Done.')")
                 file.close()
         logging.info("Finished building simulation control scripts in R. (%s)" % runList[i])
@@ -638,7 +631,7 @@ else:
         for x in range(0,len(outputFolderList)):
             if not os.path.exists(r"\\fi--san02\homes\jjo11\cascade\%s\output\%s\currentWorkspace.RData" % (runPath[i], outputFolderList[x])):
                 logging.info("Launching %s, %s" % (runList[i],outputFolderList[x]))
-                os.system(r"job submit /scheduler:fi--didemrchnb.dide.local /jobtemplate:16Core /numcores:6 /rerunnable:true /jobname:%s-%s \\fi--san02\homes\jjo11\cascade\%s\sim\sim_%s.bat" % (runList[i], outputFolderList[x], runPath[i], outputFolderList[x]))
+                os.system(r"job submit /scheduler:fi--didemrchnb.dide.local /jobtemplate:GeneralNodes /numcores:6 /rerunnable:true /jobname:%s-%s \\fi--san02\homes\jjo11\cascade\%s\sim\sim_%s.bat" % (runList[i], outputFolderList[x], runPath[i], outputFolderList[x]))
 
 #######
 # END #

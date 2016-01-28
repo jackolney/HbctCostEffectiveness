@@ -1,19 +1,21 @@
 # Notification Stuff
-LoadNotification <- function() {
+SendNotification <- function(ThePath, TheSequence) {
 	# IFTTT Notification Setup
-	list.of.packages <- c('bitops','httr','RCurl')
+	list.of.packages <- c('httr','bitops','RCurl','digest','devtools','jsonlite','data.table','ggplot2','labeling','slackr')
 	new.packages <- list.of.packages[!(list.of.packages %in% installed.packages(lib.loc='\\\\fi--san02/homes/jjo11/library/')[,'Package'])]
 	if(length(new.packages)) install.packages(new.packages,repos='http://cran.ma.imperial.ac.uk',lib='\\\\fi--san02/homes/jjo11/library/')
+	require(httr,lib.loc='\\\\fi--san02/homes/jjo11/library/')
 	require(bitops,lib.loc='\\\\fi--san02/homes/jjo11/library/')
 	require(RCurl,lib.loc='\\\\fi--san02/homes/jjo11/library/')
-	require(httr,lib.loc='\\\\fi--san02/homes/jjo11/library/')
-	myEvent <- 'cluster'
-	myKey <- 'yrE109QSpk7g52OgdOzf0'
-	makerUrl <<- paste('https://maker.ifttt.com/trigger', myEvent, 'with/key', myKey, sep='/')
-}
-
-SendNotification <- function(ThePath, TheSequence) {
-	try(httr::POST(makerUrl, body=list(value1=ThePath, value2=paste('sequence',TheSequence,'finished.'))),silent=TRUE)
+	require(digest,lib.loc='\\\\fi--san02/homes/jjo11/library/')
+	# require(devtools,lib.loc='\\\\fi--san02/homes/jjo11/library/')
+	require(jsonlite,lib.loc='\\\\fi--san02/homes/jjo11/library/')
+	require(data.table,lib.loc='\\\\fi--san02/homes/jjo11/library/')
+	require(ggplot2,lib.loc='\\\\fi--san02/homes/jjo11/library/')
+	require(labeling,lib.loc='\\\\fi--san02/homes/jjo11/library/')
+	require(slackr,lib.loc='\\\\fi--san02/homes/jjo11/library/')
+	slackrSetup(channel = '#slackr', username = 'MRC Cluster', api_token = 'xoxp-15444906276-15444906292-17727215943-e72c66b33b')
+	slackr("Simulation complete.")
 }
 
 # Check for existence of all files
@@ -103,21 +105,13 @@ AnalyseResults <- function(TheSize, ThePath, TheRun, TheIntervention) {
 
 	if(file.exists(SeqResultPath)) {
 		ArgsForModel <- read.csv(SeqResultPath)
-		j <- 1
-		while(ArgsForModel$Args[i] == 0) {
-			i <- 1
-			j <- j + 1
-			while(sort(totalDALYs,TRUE)[j] != totalDALYs[i,]) {
-				i <- i + 1
-			}
-		}
-		ArgsForModel$Args[i] = 0
+		ArgsForModel$Args[i] = 1
 		write.csv(ArgsForModel,file=SeqResultPath,row.names=FALSE)
 	} else {
 		Years <- seq(2016,2035,1)
-		Args <- c(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+		Args <- c(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
 		ArgsForModel <- data.frame(Years,Args)
-		ArgsForModel$Args[i] = 0
+		ArgsForModel$Args[i] = 1
 		write.csv(ArgsForModel,file=SeqResultPath,row.names=FALSE)
 	}
 
