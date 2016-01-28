@@ -75,8 +75,8 @@ double pictProbSecondaryCd4Test = 0.75;
 double artInitiationTime = 145.12;
 
 /* Art dropout times */
-double artDropoutTimeOneYear = 21.72 * 365.25; //0.045/100py
-double artDropoutTimeTwoYear = 52.13 * 365.25; //0.019/100py
+double artDropoutTimeOneYear = 21.72 * 365.25; //0.045 py
+double artDropoutTimeTwoYear = 52.13 * 365.25; //0.019 py
 
 //////////////////////
 //Intervention Flags//
