@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Jack Olney. All rights reserved.
 //
 
+#include <cstdlib>
 #include <stdio.h>
 #include "toolbox.h"
 #include "rng.h"
@@ -132,7 +133,7 @@ double outreachCost = 19.55;
 /* Random */
 double Random(const int i)
 {
-	unsigned long long r = theRng->int64();
+	unsigned long long r = std::rand();
 	return r % i;
 }
 
